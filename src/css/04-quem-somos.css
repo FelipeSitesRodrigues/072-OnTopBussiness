@@ -1,22 +1,39 @@
 /* ================================================================ 04 · Quem somos
-   Mockup: a foto do Yoshida em fundo claro de estúdio, presa na base da seção, o
-   texto no meio e a frase em itálico serifado à direita, com aspas cinza. O fundo
-   da foto é um cinza frio: a seção puxa esse cinza na esquerda e a máscara apaga
-   as bordas da foto, então ela se funde no papel sem virar um retângulo.
-   No celular: texto, foto, botão e frase, como no mockup mobile.              */
+   Quatro partes no papel (ver o comentário do parcial):
+   1. abertura: a foto do Yoshida em fundo claro de estúdio, o texto no meio e os 25
+      anos dentro do anel do logo. O fundo da foto é um cinza frio: a abertura puxa esse
+      cinza na esquerda e a máscara apaga as bordas da foto, então ela se funde no papel
+   2. trajetória: marcos no anel do logo, como os passos do Como funciona, ligados por
+      um fio. Um ponto de luz corre o fio e acende o marco seguinte
+   3. resultados: card escuro, números contando e as barras do antes e depois
+   4. método e a frase dele
+   Toda animação é só transform, opacidade e o traço do anel, e só roda na tela.
+   No celular: texto, foto, 25 anos, e a trajetória vira linha do tempo vertical.   */
 
-.quem {
-  padding-bottom: 0;
-  background:
-    linear-gradient(90deg, #EEEEF0 0%, #EFEEEE 18%, rgb(244 240 232 / 0) 42%),
-    radial-gradient(50% 70% at 100% 100%, rgb(226 220 207 / .45), transparent 72%),
-    var(--papel);
+.titulo--menor { font-size: clamp(1.75rem, 1.2rem + 1.5vw, 2.4rem); }
+
+/* números que contam (JS em 04-quem-somos.js): a cópia invisível do valor final
+   segura a largura, então nada em volta pula enquanto o número cresce */
+.conta { display: inline-grid; font-variant-numeric: tabular-nums; }
+.conta > * { grid-area: 1 / 1; }
+.conta__fantasma { visibility: hidden; }
+
+/* ================================================================ 1 · abertura */
+.quem__abertura { position: relative; }
+.quem__abertura::before {
+  content: '';
+  position: absolute;
+  inset: calc(var(--secao-y) * -1) 0 0;
+  z-index: -1;
+  background: linear-gradient(90deg, #EEEEF0 0%, #EFEEEE 18%, rgb(244 240 232 / 0) 42%);
+  -webkit-mask-image: linear-gradient(180deg, #000 72%, transparent);
+  mask-image: linear-gradient(180deg, #000 72%, transparent);
 }
 
 .quem__grade {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-areas: 'cab' 'foto' 'btn' 'citacao';
+  grid-template-areas: 'cab' 'foto' 'anos';
   gap: 28px;
 }
 
@@ -25,76 +42,460 @@
   grid-area: foto;
   justify-self: center;
   width: min(100%, 420px);
-  -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 12%, #000 84%, transparent 100%), linear-gradient(90deg, transparent 0, #000 9%, #000 91%, transparent 100%);
+  -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 12%, #000 80%, transparent 100%), linear-gradient(90deg, transparent 0, #000 9%, #000 91%, transparent 100%);
   -webkit-mask-composite: source-in;
-  mask-image: linear-gradient(180deg, transparent 0, #000 12%, #000 84%, transparent 100%), linear-gradient(90deg, transparent 0, #000 9%, #000 91%, transparent 100%);
+  mask-image: linear-gradient(180deg, transparent 0, #000 12%, #000 80%, transparent 100%), linear-gradient(90deg, transparent 0, #000 9%, #000 91%, transparent 100%);
   mask-composite: intersect;
 }
 .quem__foto img { width: 100%; height: auto; }
 
 /* ---------------------------------------------------------------- texto */
 .quem__cab { grid-area: cab; }
-.quem__texto { display: grid; gap: 14px; margin-top: 20px; color: var(--pedra); font-size: clamp(16px, 15.4px + .2vw, 17.5px); line-height: 1.62; }
-.quem__btn { grid-area: btn; justify-self: stretch; }
-
-/* ---------------------------------------------------------------- frase */
-.quem__citacao {
-  grid-area: citacao;
-  position: relative;
-  padding: 26px 0 36px;
+.quem__nome {
+  margin-top: 22px;
+  color: var(--tinta);
+  font: 600 clamp(19px, 17.4px + .4vw, 22px)/1.25 var(--fonte-texto);
+  letter-spacing: -.005em;
 }
+.quem__cargo {
+  margin-top: 6px;
+  color: var(--ouro-escuro);
+  font: 600 12.5px/1.45 var(--fonte-texto);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.quem__texto { display: grid; gap: 14px; margin-top: 20px; color: var(--pedra); font-size: clamp(16px, 15.4px + .2vw, 17.5px); line-height: 1.62; }
+
+/* ---------------------------------------------------------------- 25 anos no anel */
+.quem__anos {
+  grid-area: anos;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-areas: 'anel txt' 'anel marcas';
+  align-items: center;
+  column-gap: 22px;
+  row-gap: 12px;
+}
+.quem__anel {
+  --tam: 128px;
+  grid-area: anel;
+  position: relative;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  width: var(--tam);
+  height: var(--tam);
+  color: var(--ouro);
+}
+.quem__anel .anel { position: absolute; inset: 0; }
+/* traço 100 e vão 110: escondido (deslocamento 100), o anel não deixa nem a ponta redonda à mostra */
+.quem__anel .anel path { vector-effect: none; stroke-width: .7; stroke-dasharray: 100 110; }
+.quem__anos-num { color: var(--tinta); font: 700 calc(var(--tam) * .42)/.9 var(--fonte-titulo); }
+.quem__anos-num .conta { justify-items: center; }
+.quem__anos-un {
+  margin-top: 6px;
+  padding-left: .22em;
+  color: var(--ouro-escuro);
+  font: 600 12px/1 var(--fonte-texto);
+  letter-spacing: .22em;
+  text-transform: uppercase;
+}
+.quem__anos-txt {
+  grid-area: txt;
+  align-self: end;
+  max-width: 19ch;
+  color: var(--tinta);
+  font: 500 16px/1.4 var(--fonte-texto);
+}
+.quem__marcas {
+  grid-area: marcas;
+  align-self: start;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: #3F434A;
+}
+.quem__marcas svg { flex: none; height: 12px; fill: currentColor; }
+.marca-toyota { width: calc(12px * 5.655); }
+.marca-denso { width: calc(12px * 5.21); }
+.quem__marcas-sep { width: 1px; height: 16px; background: #CFC6B3; }
+
+/* ================================================================ 2 · trajetória */
+.traj__bloco { margin-top: clamp(64px, 7vw, 104px); }
+.traj__cab { max-width: 40em; }
+
+.traj {
+  --anel: 60px;
+  --vao: 32px;
+  --passo: 1s;
+  --luz-ease: cubic-bezier(.45, 0, .55, 1);
+  display: grid;
+  gap: var(--vao);
+  margin-top: clamp(32px, 4vw, 52px);
+}
+.marco {
+  --atraso: 0s;
+  --luz-atraso: .55s;
+  --luz-dur: .9s;
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--anel) minmax(0, 1fr);
+  column-gap: 20px;
+  align-items: start;
+  /* no desktop os quatro esticam até o mais alto: a sobra vai pro fim, não pro anel */
+  align-content: start;
+}
+
+/* marca: o anel do logo com o símbolo da etapa dentro */
+.marco__marca {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: var(--anel);
+  height: var(--anel);
+}
+.marco__marca::before {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgb(224 172 69 / .34), rgb(224 172 69 / 0) 70%);
+  opacity: 0;
+}
+.marco__anel { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.marco__anel path { fill: none; stroke: var(--ouro); stroke-width: 1.4; stroke-linecap: round; stroke-dasharray: 100 110; }
+.marco__simbolo { position: relative; z-index: 1; display: grid; place-items: center; }
+.marco__icone { width: 26px; height: 26px; color: var(--ouro-escuro); }
+.marco__toyota { width: 31px; height: auto; fill: var(--tinta); }
+.marco__barras { width: var(--anel); height: var(--anel); fill: var(--ouro); }
+.marco__barras rect { transform-box: fill-box; transform-origin: 50% 100%; }
+/* o último marco é o de hoje: anel cheio de luz, como um ponto de chegada */
+.marco--hoje .marco__marca::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgb(224 172 69 / .22), rgb(224 172 69 / 0) 70%);
+}
+
+/* fio até o próximo marco (celular: vertical). O traço cresce (escala) e o ponto de
+   luz vai na frente dele (translação), com a mesma curva: saem e chegam juntos */
+.marco__fio {
+  position: absolute;
+  left: calc(var(--anel) / 2 - 4px);
+  top: calc(var(--anel) + 6px);
+  bottom: calc(var(--vao) * -1 + 6px);
+  width: 8px;
+}
+.marco__fio::before,
+.marco__luz {
+  content: '';
+  position: absolute;
+  left: 3.5px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+}
+.marco__fio::before { background: rgb(126 94 22 / .2); }
+.marco__luz { background: linear-gradient(180deg, rgb(211 161 52 / .35), var(--ouro)); transform-origin: 50% 0; }
+.marco__ponto { position: absolute; inset: 0; opacity: 0; }
+.marco__ponto::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -3.5px;
+  width: 7px;
+  height: 7px;
+  margin-left: -3.5px;
+  border-radius: 50%;
+  background: #F4D27E;
+  box-shadow: 0 0 0 3px rgb(224 172 69 / .2), 0 0 16px 4px rgb(224 172 69 / .6);
+}
+
+.marco__corpo { padding-top: 4px; }
+.marco__etapa {
+  display: block;
+  color: var(--ouro-escuro);
+  font: 600 12.5px/1.3 var(--fonte-texto);
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+.marco__titulo {
+  margin-top: 8px;
+  color: var(--tinta);
+  font: 700 clamp(19px, 17px + .35vw, 21px)/1.15 var(--fonte-titulo);
+  letter-spacing: .02em;
+  text-transform: uppercase;
+}
+.marco__texto { margin-top: 8px; color: var(--pedra); font-size: 15.5px; line-height: 1.58; }
+
+/* ---------------------------------------------------------------- desktop: em linha, um marco depois do outro */
+@media (min-width: 1024px) {
+  .traj {
+    --anel: 64px;
+    --vao: clamp(24px, 2.6vw, 40px);
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    column-gap: var(--vao);
+  }
+  .marco {
+    --atraso: calc(var(--i) * var(--passo));
+    --luz-atraso: calc(var(--atraso) + .2s);
+    --luz-dur: calc(var(--passo) - .2s);
+    grid-template-columns: 1fr;
+    row-gap: 24px;
+  }
+  .marco__fio {
+    left: calc(var(--anel) + 10px);
+    right: calc(var(--vao) * -1 + 10px);
+    top: calc(var(--anel) / 2 - 4px);
+    bottom: auto;
+    width: auto;
+    height: 8px;
+  }
+  .marco__fio::before,
+  .marco__luz { left: 0; right: 0; top: 3.5px; bottom: auto; width: auto; height: 1px; }
+  .marco__luz { background: linear-gradient(90deg, rgb(211 161 52 / .35), var(--ouro)); transform-origin: 0 50%; }
+  .marco__ponto::after { left: auto; right: -3.5px; bottom: auto; top: 50%; margin: -3.5px 0 0; }
+  .marco__corpo { padding-top: 0; padding-right: 8px; }
+}
+
+/* ---------------------------------------------------------------- animação da trajetória
+   O padrão é tudo visível. Com JS e sem "reduzir movimento", o marco espera a classe
+   .ativo (04-quem-somos.js). No celular cada marco acende ao entrar na tela; no
+   desktop os quatro recebem .ativo juntos e o --atraso faz a fila.            */
+@keyframes traj-anel { from { stroke-dashoffset: 100; } }
+@keyframes traj-simbolo { from { opacity: 0; transform: scale(.5) rotate(-10deg); } }
+@keyframes traj-halo { 0% { opacity: 0; transform: scale(.6); } 30% { opacity: 1; } 100% { opacity: 0; transform: scale(1.55); } }
+@keyframes revela-luz { from { opacity: 0; } }
+@keyframes traj-barras { from { transform: scaleY(0); } }
+@keyframes traj-luz-y { from { transform: scaleY(0); } }
+@keyframes traj-luz-x { from { transform: scaleX(0); } }
+@keyframes traj-ponto-y { from { transform: translateY(-100%); } }
+@keyframes traj-ponto-x { from { transform: translateX(-100%); } }
+@keyframes traj-ponto-brilho { 0%, 72% { opacity: 1; } 100% { opacity: 0; } }
+
+@media (prefers-reduced-motion: no-preference) {
+  .js .marco:not(.ativo) .marco__anel path { stroke-dashoffset: 100; }
+  .js .marco:not(.ativo) .marco__simbolo,
+  .js .marco:not(.ativo) .marco__marca::after,
+  .js .marco:not(.ativo) .marco__corpo { opacity: 0; }
+  .js .marco:not(.ativo) .marco__luz { transform: scaleY(0); }
+
+  .js .marco.ativo .marco__anel path { animation: traj-anel .9s var(--ease-in-out) var(--atraso) backwards; }
+  .js .marco.ativo .marco__marca::before { animation: traj-halo 1.2s var(--ease-out) calc(var(--atraso) + .1s) backwards; }
+  .js .marco.ativo .marco__marca::after { animation: revela-luz 1s ease calc(var(--atraso) + .3s) backwards; }
+  .js .marco.ativo .marco__simbolo { animation: traj-simbolo .7s var(--ease-out) calc(var(--atraso) + .2s) backwards; }
+  .js .marco.ativo .marco__corpo { animation: revela-sobe .8s var(--ease-out) calc(var(--atraso) + .25s) backwards; }
+  .js .marco.ativo .marco__luz { animation: traj-luz-y var(--luz-dur) var(--luz-ease) var(--luz-atraso) backwards; }
+  .js .marco.ativo .marco__ponto { animation: traj-ponto-y var(--luz-dur) var(--luz-ease) var(--luz-atraso) backwards, traj-ponto-brilho calc(var(--luz-dur) * 1.4) linear var(--luz-atraso); }
+  .js .marco--hoje.ativo .marco__barras rect { animation: traj-barras .6s var(--ease-out) calc(var(--atraso) + .35s) backwards; }
+  .js .marco--hoje.ativo .marco__barras rect:nth-child(2) { animation-delay: calc(var(--atraso) + .45s); }
+  .js .marco--hoje.ativo .marco__barras rect:nth-child(3) { animation-delay: calc(var(--atraso) + .55s); }
+}
+@media (prefers-reduced-motion: no-preference) and (min-width: 1024px) {
+  .js .marco:not(.ativo) .marco__luz { transform: scaleX(0); }
+  .js .marco.ativo .marco__luz { animation-name: traj-luz-x; }
+  .js .marco.ativo .marco__ponto { animation-name: traj-ponto-x, traj-ponto-brilho; }
+}
+
+/* ================================================================ 3 · resultados */
+.resultados {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  margin-top: clamp(72px, 8vw, 116px);
+  padding: clamp(34px, 5vw, 72px) clamp(22px, 4.6vw, 72px) clamp(28px, 3.6vw, 48px);
+  border-radius: 18px;
+  background:
+    radial-gradient(70% 90% at 100% 0%, rgb(211 161 52 / .12), transparent 62%),
+    radial-gradient(60% 80% at 0% 100%, rgb(28 32 39 / .95), transparent 70%),
+    var(--tinta);
+  box-shadow: 0 40px 80px -50px rgb(17 20 24 / .6);
+}
+/* papel quadriculado de gráfico, bem apagado, mais forte no canto do brilho */
+.resultados::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image: linear-gradient(rgb(244 240 232 / .055) 1px, transparent 1px), linear-gradient(90deg, rgb(244 240 232 / .055) 1px, transparent 1px);
+  background-size: 48px 48px;
+  background-position: -1px -1px;
+  -webkit-mask-image: radial-gradient(110% 90% at 88% 0%, #000, transparent 72%);
+  mask-image: radial-gradient(110% 90% at 88% 0%, #000, transparent 72%);
+}
+
+.resultados__cab { display: grid; gap: 18px; }
+.resultados__apoio { display: grid; gap: 16px; max-width: 36ch; color: var(--texto-escuro); font-size: clamp(16px, 15.4px + .2vw, 18px); line-height: 1.55; }
+.resultados__legenda {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: rgb(244 240 232 / .66);
+  font: 600 12px/1 var(--fonte-texto);
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+.resultados__chave { width: 10px; height: 10px; border-radius: 2px; }
+.resultados__chave--antes { background: rgb(172 173 175 / .6); }
+.resultados__chave--depois { margin-left: 12px; background: var(--ouro); }
+
+.resultados__lista { display: grid; margin-top: clamp(30px, 4vw, 52px); border-top: 1px solid var(--linha-escura); }
+.res { padding: 28px 0 30px; }
+.res + .res { border-top: 1px solid var(--linha-escura); }
+.res__topo {
+  display: flex;
+  align-items: flex-end;
+  gap: clamp(16px, 1.7vw, 26px);
+  font-size: clamp(64px, 14px + 13vw, 88px);
+}
+.res__num { color: var(--ouro-texto); font: 700 1em/.86 var(--fonte-titulo); letter-spacing: -.005em; }
+.res__rotulo { margin-top: 16px; max-width: 24ch; color: var(--papel); font: 500 clamp(16px, 15px + .3vw, 18px)/1.4 var(--fonte-texto); }
+
+/* antes e depois: as barras do logo, na altura do número */
+.res__grafico {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  flex: none;
+  height: .8em;
+  margin-bottom: .04em;
+  padding: 0 5px;
+  border-bottom: 1px solid rgb(244 240 232 / .24);
+}
+.res__barra { width: 18px; border-radius: 2px 2px 0 0; transform-origin: 50% 100%; }
+.res__barra--antes { height: max(2px, calc(var(--antes) * 100%)); background: rgb(172 173 175 / .6); }
+.res__barra--depois {
+  height: 100%;
+  background: linear-gradient(180deg, #F2D17C, var(--ouro) 55%, #A97F25);
+  box-shadow: 0 0 22px -6px rgb(224 172 69 / .55);
+}
+
+.resultados__pe {
+  display: grid;
+  gap: 16px;
+  margin-top: clamp(8px, 1.4vw, 20px);
+  padding-top: clamp(22px, 2.4vw, 30px);
+  border-top: 1px solid var(--linha-escura);
+}
+.resultados__base { max-width: 58ch; color: var(--texto-escuro); font-size: 15.5px; line-height: 1.55; }
+.resultados__aviso {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  max-width: 46ch;
+  color: rgb(244 240 232 / .62);
+  font-size: 13px;
+  line-height: 1.5;
+}
+.resultados__info { width: 17px; height: 17px; flex: none; margin-top: 1px; color: var(--ouro); }
+
+@media (min-width: 900px) {
+  .resultados__cab { grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); align-items: end; column-gap: 48px; }
+  .resultados__pe { grid-template-columns: minmax(0, 1fr) auto; align-items: center; column-gap: 48px; }
+}
+@media (min-width: 1024px) {
+  .resultados__lista { grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 0; }
+  .res { padding: 8px clamp(20px, 2.6vw, 40px) 36px; }
+  .res:first-child { padding-left: 0; }
+  .res:last-child { padding-right: 0; }
+  .res + .res { border-top: 0; border-left: 1px solid var(--linha-escura); }
+  .res__topo { font-size: clamp(56px, 1.2rem + 3.6vw, 88px); }
+  .resultados__pe { margin-top: 0; }
+}
+
+/* barras paradas até o número começar a contar (JS põe .contando) */
+@keyframes barra-sobe { from { transform: scaleY(0); } }
+@media (prefers-reduced-motion: no-preference) {
+  .js [data-contador]:not(.contando) .res__barra { transform: scaleY(0); }
+  .js .res.contando .res__barra--antes { animation: barra-sobe .45s var(--ease-out) backwards; }
+  .js .quem__anos:not(.contando) .anel path { stroke-dashoffset: 100; }
+  .js .quem__anos.contando .anel path { animation: traj-anel 2.4s var(--ease-out) .15s backwards; }
+}
+
+/* ================================================================ 4 · método e a frase */
+.quem__fecho {
+  display: grid;
+  gap: clamp(44px, 5vw, 64px);
+  margin-top: clamp(72px, 8vw, 116px);
+}
+.metodo__titulo {
+  display: grid;
+  margin-top: 16px;
+  color: var(--tinta);
+  font: 700 clamp(48px, 1.6rem + 5vw, 100px)/.94 var(--fonte-titulo);
+  letter-spacing: .005em;
+  text-transform: uppercase;
+}
+.metodo__linha { display: block; }
+.metodo__mais { color: var(--ouro); }
+.metodo__texto { margin-top: 26px; max-width: 46ch; color: var(--pedra); font-size: clamp(16px, 15.4px + .2vw, 17.5px); line-height: 1.62; }
+
+.quem__assina { display: grid; justify-items: start; gap: 30px; }
 .quem__aspas {
   display: block;
-  height: .5em;
-  color: rgb(94 99 107 / .32);
-  font: 700 92px/1 var(--fonte-citacao);
+  height: .46em;
+  color: rgb(126 94 22 / .38);
+  font: 400 104px/1 var(--fonte-citacao);
+  font-style: italic;
 }
 .quem__frase {
-  margin-top: 6px;
-  color: #45484E;
-  font: 400 clamp(22px, 19px + .6vw, 26px)/1.32 var(--fonte-citacao);
+  margin-top: 8px;
+  color: #3A3D43;
+  font: 400 clamp(26px, 1.1rem + 1.3vw, 36px)/1.24 var(--fonte-citacao);
   font-style: italic;
   text-wrap: balance;
 }
 .quem__assinatura {
-  margin-top: 18px;
+  display: grid;
+  gap: 5px;
+  margin-top: 24px;
+  padding-top: 18px;
+  border-top: 1px solid var(--borda-clara);
   color: var(--tinta);
-  font: 600 13px/1.3 var(--fonte-texto);
+  font: 600 13.5px/1.3 var(--fonte-texto);
   letter-spacing: .1em;
   text-transform: uppercase;
 }
+.quem__assinatura span { color: var(--pedra); font: 400 14.5px/1.45 var(--fonte-texto); letter-spacing: 0; text-transform: none; }
+.quem__btn { justify-self: stretch; }
 
 /* ---------------------------------------------------------------- tablet: foto e texto lado a lado */
 @media (min-width: 768px) {
   .quem__grade {
     grid-template-columns: minmax(0, .9fr) minmax(0, 1.2fr);
-    grid-template-areas: 'foto cab' 'foto btn' 'citacao citacao';
-    grid-template-rows: auto auto auto;
+    grid-template-areas: 'foto cab' 'foto anos';
+    grid-template-rows: auto 1fr;
     column-gap: clamp(32px, 4vw, 56px);
-    row-gap: 26px;
+    row-gap: 36px;
   }
-  .quem__foto {
-    width: 100%;
-    -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 12%), linear-gradient(90deg, transparent 0, #000 9%, #000 91%, transparent 100%);
-    mask-image: linear-gradient(180deg, transparent 0, #000 12%), linear-gradient(90deg, transparent 0, #000 9%, #000 91%, transparent 100%);
-  }
+  .quem__foto { width: 100%; align-self: stretch; }
   .quem__foto img { height: 100%; object-fit: cover; object-position: center top; }
-  .quem__btn { justify-self: start; align-self: start; margin-bottom: var(--secao-y); }
-  .quem__citacao { display: none; }
+  .quem__anos { align-self: start; }
+  .quem__btn { justify-self: start; }
 }
 
-/* ---------------------------------------------------------------- desktop: três colunas, foto presa na base */
+/* ---------------------------------------------------------------- desktop: três colunas na abertura, método e frase lado a lado */
 @media (min-width: 1100px) {
   .quem__grade {
     grid-template-columns: minmax(0, .9fr) minmax(0, 1.25fr) minmax(0, .58fr);
-    grid-template-areas: 'foto cab citacao' 'foto btn citacao';
-    grid-template-rows: auto 1fr;
+    grid-template-areas: 'foto cab anos';
+    grid-template-rows: auto;
     column-gap: clamp(36px, 3.6vw, 60px);
   }
   .quem__foto { max-width: 440px; justify-self: start; }
-  .quem__citacao {
-    display: block;
-    align-self: start;
-    padding: 58px 0 0;
+  .quem__anos {
+    grid-template-columns: 1fr;
+    grid-template-areas: 'anel' 'txt' 'marcas';
+    justify-items: start;
+    row-gap: 16px;
+    padding-top: 56px;
+  }
+  .quem__anel { --tam: clamp(172px, 13.5vw, 204px); margin-bottom: 8px; }
+  .quem__anos-txt { align-self: start; }
+  .quem__fecho {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr);
+    align-items: center;
+    column-gap: clamp(48px, 6vw, 104px);
   }
 }

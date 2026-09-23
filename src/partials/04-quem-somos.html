@@ -1,32 +1,183 @@
-<!-- 04 · Quem somos (bloco 3 da copy, no desenho do mockup). Papel, em três colunas: a
-     foto real do Yoshida (sem a marca do Gemini) presa na base da seção, o texto no
-     meio e a frase em itálico à direita. A frase do mockup era inventada e estava
-     atribuída a ele: aqui é um trecho da própria copy, assinado pela empresa, e fica
-     escondida do leitor de tela porque repete o texto. Quando o Yoshida mandar uma
-     frase dele, ela entra no lugar, com o nome. -->
+<!-- 04 · Quem somos (bloco 3 da copy, com a trajetória que a On Top mandou em 2026-09-23).
+     Quatro partes no papel:
+     1. abertura: foto, nome e texto; à direita, os 25 anos contando de 0 dentro do anel
+        do logo, com as marcas da Toyota e da DENSO embaixo
+     2. trajetória: 4 marcos (POLI-USP, Toyota e DENSO, especialidade, On Top hoje) ligados
+        por um fio dourado. Um ponto de luz corre o fio e acende um marco de cada vez
+     3. resultados: card escuro com os três números contando do zero, cada um com o antes
+        e depois em barras (as barras do logo) subindo junto com o número
+     4. o método e a frase dele, assinada, com o botão pro Como funciona
+     O texto não tem datas: a linha do tempo segue etapas, sem ano inventado, e não diz
+     qual das duas empresas veio antes. Os números são de gestão em empresa, não de
+     investimento, e o card diz isso com todas as letras (CVM: a página não pode sugerir
+     rendimento). Os logos entram numa cor só, como referência de carreira. -->
 <section class="secao secao--papel quem" id="quem-somos" aria-labelledby="quem-titulo">
-  <div class="container quem__grade">
-    <figure class="quem__foto" data-revela>
-      <img data-img="yoshida" sizes="(min-width: 1100px) 420px, (min-width: 768px) 44vw, 88vw" alt="Yoshida, proprietário da On Top Business, de terno cinza e braços cruzados" loading="lazy" decoding="async">
-    </figure>
+  <div class="quem__abertura">
+    <div class="container quem__grade">
+      <figure class="quem__foto" data-revela>
+        <img data-img="yoshida" sizes="(min-width: 1100px) 420px, (min-width: 768px) 44vw, 88vw" alt="Eduardo Kazuo Yoshida, à frente da On Top Business, de terno cinza e braços cruzados" loading="lazy" decoding="async">
+      </figure>
 
-    <div class="quem__cab" data-revela style="--i:1">
-      <span class="rotulo">Quem somos</span>
-      <h2 class="titulo" id="quem-titulo">Quem está por trás da On Top.</h2>
-      <div class="quem__texto">
-        <p>Quem está à frente da On Top Business é Yoshida, com XX anos de mercado financeiro.</p>
-        <p>A ideia saiu de uma conta que todo investidor conhece. A bolsa tem liquidez e espaço pra crescer, mas oscila. O imóvel é estável, mas demora pra virar dinheiro.</p>
-        <p>A On Top junta os dois: a estratégia trabalha na bolsa, e um imóvel fica como garantia de cada operação.</p>
-        <p>Pra você, isso quer dizer buscar o potencial da bolsa com um patrimônio real vinculado ao contrato, e saber desde o primeiro dia com quem está falando.</p>
+      <div class="quem__cab" data-revela style="--i:1">
+        <span class="rotulo">Quem somos</span>
+        <h2 class="titulo" id="quem-titulo">Quem está por trás da On Top.</h2>
+        <p class="quem__nome">Eduardo Kazuo Yoshida</p>
+        <p class="quem__cargo">Engenheiro POLI-USP · Especialista em gestão e resultados</p>
+        <div class="quem__texto">
+          <p>Engenheiro formado pela Escola Politécnica da USP, construiu a carreira em duas das maiores referências mundiais da indústria japonesa: Toyota e DENSO.</p>
+          <p>A On Top saiu de uma conta que todo investidor conhece. A bolsa tem liquidez e espaço pra crescer, mas oscila. O imóvel é estável, mas demora pra virar dinheiro. A On Top junta os dois: a estratégia trabalha na bolsa, e um imóvel fica como garantia de cada operação.</p>
+          <p>Pra você, isso quer dizer buscar o potencial da bolsa com um patrimônio real vinculado ao contrato, e saber desde o primeiro dia com quem está falando.</p>
+        </div>
+      </div>
+
+      <div class="quem__anos" data-contador data-revela style="--i:2">
+        <div class="quem__anel">
+          <svg class="anel" viewBox="0 0 60 60" aria-hidden="true"><path pathLength="100" d="M53.38 16.5 A27 27 0 1 1 43.5 6.62"/></svg>
+          <p class="quem__anos-num"><span class="sr-only">25 anos</span><span class="conta" aria-hidden="true" data-conta="25"><span class="conta__fantasma">25</span><span class="conta__valor">25</span></span></p>
+          <span class="quem__anos-un" aria-hidden="true">anos</span>
+        </div>
+        <p class="quem__anos-txt">de experiência corporativa internacional</p>
+        <p class="quem__marcas">
+          <span class="sr-only">Toyota Corporation e DENSO Corporation</span>
+          <svg class="marca-toyota" viewBox="73.74 5.07 177.61 31.41" aria-hidden="true" focusable="false"><path d="M99.2 5.96H73.74v5.63h9.4v24h6.67v-24h9.4V5.96m24.89 19.57a8.17 8.17 0 0 1-6.16 5.03 8.96 8.96 0 0 1-1.54.14c-.53 0-1.05-.05-1.55-.14a8.15 8.15 0 0 1-6.15-5.03 13 13 0 0 1-.9-4.76 13 13 0 0 1 .9-4.75 8.16 8.16 0 0 1 6.15-5.04 8.52 8.52 0 0 1 3.1 0 8.16 8.16 0 0 1 6.15 5.03 13.1 13.1 0 0 1 0 9.52m-7.7-20.46a15.7 15.7 0 1 0 0 31.41 15.7 15.7 0 0 0 0-31.41zm15.8.9h7.86l7.33 12.73 7.33-12.74h7.85l-11.85 18.67v10.96h-6.66V24.63L132.2 5.96m46.2 24.74c.52 0 1.04-.05 1.54-.14a8.15 8.15 0 0 0 6.15-5.03 13 13 0 0 0 0-9.51 8.15 8.15 0 0 0-6.15-5.03 8.78 8.78 0 0 0-3.1 0 8.15 8.15 0 0 0-6.14 5.03 12.99 12.99 0 0 0-.9 4.75c0 1.68.32 3.29.9 4.76a8.14 8.14 0 0 0 6.15 5.03 8.84 8.84 0 0 0 1.55.14m-15.7-9.93a15.7 15.7 0 1 1 31.4 0 15.7 15.7 0 0 1-31.4 0zm76.87 3.1-4.36-11.71-4.37 11.7h8.73m1.93 5.19h-12.6l-2.43 6.52h-7.42l12-29.63h8.3l12 29.63h-7.4zM221.01 5.96h-25.46v5.63h9.4v24h6.67v-24H221V5.96"/></svg>
+          <span class="quem__marcas-sep" aria-hidden="true"></span>
+          <svg class="marca-denso" viewBox="341.93 588.02 296.47 56.91" aria-hidden="true" focusable="false"><path d="M 357.54,594.55 c -0.26,-0.89 -2.53,-5.42 -2.53,-5.42 l 23.54,0.01 c 7.88,0 17.54,0.7 22.32,6.14 3.85,4.38 4.19,11.28 1.03,21.07 -8.14,25.35 -25.91,27.45 -44.42,27.45 l -15.55,0 15.61,-49.25 z m 4.49,42.56 c 6.56,-0.03 12.2,-1.09 15.63,-3.34 4.37,-2.88 7.38,-7.88 10.4,-17.26 2.68,-8.35 3.82,-14.4 0.95,-17.67 -1.91,-2.19 -6.5,-3.24 -12.41,-3.24 -0.27,0 -0.53,0 -0.78,0 0,0 -2.52,-0.05 -5.03,0.26 l -12.4,38.76 c 0,0 -0.66,2.49 2.31,2.49 M 425.79,637.11 l 24.89,0.03 -2.14,6.67 -41.44,0 15.61,-49.25 c -0.26,-0.89 -2.48,-5.43 -2.48,-5.43 l 44.05,0 -2.15,6.67 -26.17,0 -5.18,16.19 18.27,0 -2.15,6.68 -18.25,0 -5.04,15.82 c 0,0 -0.69,2.57 2.2,2.63 M 468.43,643.8 l 12.53,-40.23 15.13,40.23 11.73,0 17.57,-54.68 -9.47,0 -11.99,38.28 -0.18,-0.45 -14.09,-37.84 -17.95,0 c 0,0 2.23,4.54 2.48,5.43 l -15.61,49.25 M 571.68,598.26 c -2.16,-0.99 -7.29,-3.22 -14.62,-3.31 -2.1,-0.02 -7.18,0.58 -8.89,5.91 -1.45,4.49 3.39,6.9 9,9.69 7.18,3.58 15.32,7.64 12.17,17.46 -3.4,10.57 -14.44,16.87 -30.28,16.63 -11.54,-0.17 -17.18,-2.32 -17.18,-2.32 l 3.22,-10.07 2.33,1.33 c 2.31,1.31 8.41,4.38 15.24,4.38 2.29,0 5.51,-0.41 8.11,-2.02 1.86,-1.15 3.18,-3.04 3.94,-5.41 1.56,-4.87 -3.41,-7.39 -9.18,-10.31 -7.02,-3.56 -14.98,-7.58 -11.89,-17.13 1.25,-3.94 3.94,-7.33 7.73,-9.83 4.95,-3.25 10.56,-4.92 19.55,-4.97 6.32,-0.03 12.46,0.8 15.03,1.48 l 0.96,0.27 -0.36,1.17 -1.83,5.67 -0.78,2.44 M 581.24,616.67 c 3.6,-11.18 8.49,-18.51 15.43,-23.06 5.73,-3.76 12.72,-5.59 21.38,-5.59 8.27,0 13.87,1.8 17.13,5.5 4.06,4.63 4.28,11.98 0.69,23.16 -3.9,12.12 -11.88,28.26 -36.12,28.26 -8.6,0 -14.39,-1.84 -17.73,-5.64 -4.03,-4.58 -4.27,-11.78 -0.79,-22.62 m 20.68,21.52 c 3.42,0 6.34,-0.76 8.82,-2.46 5.69,-3.87 8.88,-11.88 11.2,-19.05 2.52,-7.84 4.38,-15.63 1,-19.49 -1.44,-1.63 -3.75,-2.43 -7.06,-2.43 -12.01,0 -17.05,10.53 -20.7,21.92 -1.97,6.14 -4.18,14.79 -0.52,18.96 1.51,1.72 3.88,2.56 7.26,2.56"/></svg>
+        </p>
       </div>
     </div>
+  </div>
 
-    <a class="btn btn--contorno-escuro quem__btn" href="#como-funciona" data-revela style="--i:2">Entender como funciona<i data-i="arrow-right" data-w="regular" class="seta"></i></a>
+  <!-- 2 · trajetória -->
+  <div class="container traj__bloco">
+    <header class="traj__cab" data-revela>
+      <span class="rotulo">Trajetória</span>
+      <h3 class="titulo titulo--menor">Da POLI-USP <span class="destaque">à On Top.</span></h3>
+    </header>
 
-    <aside class="quem__citacao" aria-hidden="true" data-revela style="--i:3">
-      <span class="quem__aspas">“</span>
-      <p class="quem__frase">Saber desde o primeiro dia com quem está falando.</p>
-      <p class="quem__assinatura">On Top Business</p>
-    </aside>
+    <ol class="traj" role="list" data-trajetoria>
+      <li class="marco" style="--i:0">
+        <span class="marco__marca" aria-hidden="true">
+          <svg class="marco__anel" viewBox="0 0 60 60"><path pathLength="100" d="M53.38 16.5 A27 27 0 1 1 43.5 6.62"/></svg>
+          <span class="marco__simbolo"><i data-i="graduation-cap" class="marco__icone"></i></span>
+        </span>
+        <span class="marco__fio" aria-hidden="true"><span class="marco__luz"></span><span class="marco__ponto"></span></span>
+        <div class="marco__corpo">
+          <span class="marco__etapa">Formação</span>
+          <h4 class="marco__titulo">Engenharia na POLI-USP</h4>
+          <p class="marco__texto">Engenheiro formado pela Escola Politécnica da Universidade de São Paulo.</p>
+        </div>
+      </li>
+      <li class="marco" style="--i:1">
+        <span class="marco__marca" aria-hidden="true">
+          <svg class="marco__anel" viewBox="0 0 60 60"><path pathLength="100" d="M53.38 16.5 A27 27 0 1 1 43.5 6.62"/></svg>
+          <span class="marco__simbolo"><svg class="marco__toyota" viewBox="0.28 0.27 59.45 38.46" focusable="false"><path d="M 30 0.27 C 13.59 0.27 0.28 8.88 0.28 19.5 C 0.28 30.12 13.59 38.73 30 38.73 C 46.41 38.73 59.72 30.12 59.72 19.5 C 59.72 8.87 46.41 0.27 30 0.27 Z M 30 30.48 C 27.56 30.48 25.57 25.67 25.44 19.62 C 26.91 19.75 28.44 19.82 30 19.82 C 31.56 19.82 33.09 19.75 34.56 19.62 C 34.43 25.66 32.44 30.48 30 30.48 Z M 25.74 14.81 C 26.41 10.54 28.06 7.5 30 7.5 C 31.94 7.5 33.59 10.54 34.26 14.81 C 32.89 14.93 31.47 15 30 15 C 28.53 15 27.11 14.93 25.74 14.81 Z M 30 3.05 C 26.81 3.05 24.09 7.82 23.09 14.49 C 17.05 13.55 12.83 11.4 12.83 8.9 C 12.83 5.54 20.52 2.8 30 2.8 C 39.48 2.8 47.17 5.54 47.17 8.9 C 47.17 11.4 42.95 13.55 36.91 14.49 C 35.91 7.82 33.19 3.05 30 3.05 Z M 4.54 18.78 C 4.54 15.52 5.79 12.46 7.98 9.84 C 7.95 10.02 7.94 10.21 7.94 10.39 C 7.94 14.5 14.09 18 22.68 19.29 C 22.68 19.59 22.68 19.89 22.68 20.19 C 22.68 27.84 24.82 34.32 27.79 36.52 C 14.76 35.73 4.54 28.09 4.54 18.78 Z M 32.21 36.52 C 35.18 34.32 37.32 27.84 37.32 20.19 C 37.32 19.88 37.32 19.59 37.32 19.29 C 45.9 18 52.06 14.5 52.06 10.39 C 52.06 10.21 52.05 10.02 52.02 9.84 C 54.21 12.47 55.46 15.52 55.46 18.78 C 55.46 28.09 45.24 35.73 32.21 36.52 Z M 32.21 36.52"/></svg></span>
+        </span>
+        <span class="marco__fio" aria-hidden="true"><span class="marco__luz"></span><span class="marco__ponto"></span></span>
+        <div class="marco__corpo">
+          <span class="marco__etapa">Carreira</span>
+          <h4 class="marco__titulo">Toyota e DENSO</h4>
+          <p class="marco__texto">25 anos em duas das maiores referências mundiais da indústria japonesa.</p>
+        </div>
+      </li>
+      <li class="marco" style="--i:2">
+        <span class="marco__marca" aria-hidden="true">
+          <svg class="marco__anel" viewBox="0 0 60 60"><path pathLength="100" d="M53.38 16.5 A27 27 0 1 1 43.5 6.62"/></svg>
+          <span class="marco__simbolo"><i data-i="arrows-clockwise" class="marco__icone"></i></span>
+        </span>
+        <span class="marco__fio" aria-hidden="true"><span class="marco__luz"></span><span class="marco__ponto"></span></span>
+        <div class="marco__corpo">
+          <span class="marco__etapa">Especialidade</span>
+          <h4 class="marco__titulo">Gestão que sustenta resultado</h4>
+          <p class="marco__texto">Sistema Toyota de Produção (TPS), Lean Management, melhoria contínua, produtividade e formação de líderes.</p>
+        </div>
+      </li>
+      <li class="marco marco--hoje" style="--i:3">
+        <span class="marco__marca" aria-hidden="true">
+          <svg class="marco__anel" viewBox="0 0 60 60"><path pathLength="100" d="M53.38 16.5 A27 27 0 1 1 43.5 6.62"/></svg>
+          <span class="marco__simbolo"><svg class="marco__barras" viewBox="0 0 60 60" focusable="false"><rect x="18.5" y="32" width="5.5" height="10" rx="1"/><rect x="27.25" y="25" width="5.5" height="17" rx="1"/><rect x="36" y="17" width="5.5" height="25" rx="1"/></svg></span>
+        </span>
+        <div class="marco__corpo">
+          <span class="marco__etapa">Hoje</span>
+          <h4 class="marco__titulo">À frente da On Top</h4>
+          <p class="marco__texto">Estratégia na bolsa e um imóvel como garantia de cada operação, tudo descrito em contrato.</p>
+        </div>
+      </li>
+    </ol>
+  </div>
+
+  <!-- 3 · resultados -->
+  <div class="container">
+    <div class="resultados escuro">
+      <div class="resultados__cab" data-revela>
+        <div>
+          <span class="rotulo">Resultados em gestão</span>
+          <h3 class="titulo titulo--menor">Resultados expressivos <span class="destaque">e duradouros.</span></h3>
+        </div>
+        <div class="resultados__apoio">
+          <p>Em projetos de transformação empresarial, a atuação de Eduardo Yoshida já contribuiu para:</p>
+          <p class="resultados__legenda" aria-hidden="true"><span class="resultados__chave resultados__chave--antes"></span>antes<span class="resultados__chave resultados__chave--depois"></span>depois</p>
+        </div>
+      </div>
+
+      <ul class="resultados__lista" role="list">
+        <li class="res" data-contador data-revela style="--i:1;--antes:.19">
+          <div class="res__topo">
+            <p class="res__num"><span class="sr-only">+426%</span><span class="conta" aria-hidden="true" data-conta="426" data-tipo="pct"><span class="conta__fantasma">+426%</span><span class="conta__valor">+426%</span></span></p>
+            <span class="res__grafico" aria-hidden="true">
+              <span class="res__barra res__barra--antes"></span>
+              <span class="res__barra res__barra--depois"></span>
+            </span>
+          </div>
+          <p class="res__rotulo">em produtividade</p>
+        </li>
+        <li class="res" data-contador data-revela style="--i:2;--antes:.0833">
+          <div class="res__topo">
+            <p class="res__num"><span class="sr-only">12 vezes</span><span class="conta" aria-hidden="true" data-conta="12" data-tipo="vezes"><span class="conta__fantasma">12×</span><span class="conta__valor">12×</span></span></p>
+            <span class="res__grafico" aria-hidden="true">
+              <span class="res__barra res__barra--antes"></span>
+              <span class="res__barra res__barra--depois"></span>
+            </span>
+          </div>
+          <p class="res__rotulo">de aumento no volume</p>
+        </li>
+        <li class="res" data-contador data-revela style="--i:3;--antes:.0192">
+          <div class="res__topo">
+            <p class="res__num"><span class="sr-only">52 vezes</span><span class="conta" aria-hidden="true" data-conta="52" data-tipo="vezes"><span class="conta__fantasma">52×</span><span class="conta__valor">52×</span></span></p>
+            <span class="res__grafico" aria-hidden="true">
+              <span class="res__barra res__barra--antes"></span>
+              <span class="res__barra res__barra--depois"></span>
+            </span>
+          </div>
+          <p class="res__rotulo">de aumento no lucro operacional líquido</p>
+        </li>
+      </ul>
+
+      <div class="resultados__pe" data-revela>
+        <p class="resultados__base">Resultados construídos com sistemas de trabalho, melhoria contínua, desenvolvimento das pessoas e gestão orientada à execução.</p>
+        <p class="resultados__aviso"><i data-i="info" class="resultados__info"></i>Números de projetos de gestão em empresas. Não se referem a investimentos e não indicam rentabilidade.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4 · método e a frase dele -->
+  <div class="container quem__fecho">
+    <div class="metodo">
+      <span class="rotulo" data-revela>O método</span>
+      <h3 class="metodo__titulo">
+        <span class="metodo__linha" data-revela style="--i:1">Gestão</span>
+        <span class="metodo__linha" data-revela style="--i:2"><span class="metodo__mais">+</span> Pessoas</span>
+        <span class="metodo__linha" data-revela style="--i:3"><span class="metodo__mais">+</span> <span class="destaque">Resultados</span></span>
+      </h3>
+      <p class="metodo__texto" data-revela style="--i:4">A experiência do ambiente corporativo japonês, somada ao desenvolvimento humano e à inteligência emocional: organizações mais eficientes, equipes mais comprometidas e líderes preparados pra conduzir mudanças consistentes.</p>
+    </div>
+
+    <div class="quem__assina" data-revela style="--i:2">
+      <figure class="quem__citacao">
+        <span class="quem__aspas" aria-hidden="true">“</span>
+        <blockquote class="quem__frase"><p>Transformar empresas. Desenvolver pessoas. Construir resultados que permanecem.</p></blockquote>
+        <figcaption class="quem__assinatura">Eduardo Kazuo Yoshida<span>Engenheiro POLI-USP · 25 anos de experiência corporativa internacional</span></figcaption>
+      </figure>
+      <a class="btn btn--contorno-escuro quem__btn" href="#como-funciona">Entender como funciona<i data-i="arrow-right" data-w="regular" class="seta"></i></a>
+    </div>
   </div>
 </section>
