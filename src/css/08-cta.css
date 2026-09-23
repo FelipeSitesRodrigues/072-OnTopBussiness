@@ -1,0 +1,64 @@
+/* ================================================================ 08 · CTA final
+   Mockup: escuro, título e texto à esquerda, botões empilhados à direita e as
+   barras douradas subindo por trás, do meio da seção até a borda. As barras
+   entram apagadas à esquerda (máscara) pra não brigar com o título. No celular
+   as barras ficam numa faixa no pé da seção, abaixo dos botões.              */
+
+.cta { overflow: hidden; padding-bottom: 200px; }
+.cta__grafico {
+  position: absolute;
+  inset: auto 0 0 0;
+  z-index: -1;
+  height: 220px;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 30%);
+  mask-image: linear-gradient(90deg, transparent 0, #000 30%);
+}
+.cta__grafico img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 82% 100%;
+  opacity: .95;
+}
+
+.cta__grade { display: grid; gap: 30px; }
+.cta__titulo { max-width: 15em; }
+.cta__apoio { max-width: 32em; margin-top: 18px; }
+.cta__acoes { display: grid; gap: 12px; }
+.cta__btn { width: 100%; min-height: 58px; }
+.cta__acoes .btn--contorno-claro { background: rgb(17 20 24 / .55); -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); }
+.cta__acoes .btn--contorno-claro:hover { background: rgb(40 44 50 / .7); }
+.cta__numero {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 4px;
+  color: var(--papel);
+  font: 600 17px/1.3 var(--fonte-texto);
+  letter-spacing: .02em;
+}
+.cta__numero .i { width: 20px; height: 20px; color: var(--ouro); }
+.cta__nota { color: var(--prata); font-size: 14px; line-height: 1.5; text-align: center; text-wrap: balance; }
+
+/* ---------------------------------------------------------------- tablet e desktop */
+@media (min-width: 768px) {
+  .cta { padding-bottom: var(--secao-y); }
+  .cta__grafico {
+    inset: 0 0 0 auto;
+    width: min(72%, 1180px);
+    height: auto;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 38%);
+    mask-image: linear-gradient(90deg, transparent 0, #000 38%);
+  }
+  .cta__grafico img { object-position: 100% 100%; }
+  .cta__grade {
+    grid-template-columns: minmax(0, 1.3fr) minmax(280px, 380px);
+    align-items: center;
+    column-gap: clamp(40px, 6vw, 120px);
+  }
+}
+@media (min-width: 1100px) {
+  .cta__titulo { font-size: clamp(2.4rem, 1.2rem + 1.8vw, 3.1rem); }
+}

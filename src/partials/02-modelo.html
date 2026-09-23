@@ -1,0 +1,42 @@
+<!-- 02 · O modelo (bloco 4 da copy: os três pilares da On Top, sem as promessas).
+     Papel, como no mockup: rótulo, título, texto e botão à esquerda e os 3 cards à
+     direita. Cada card tem o WhatsApp do seu tema (regra da casa). O do meio, a
+     garantia, tem um destaque discreto. No celular: cards empilhados, botão no fim. -->
+<section class="secao secao--papel modelo" id="modelo" aria-labelledby="modelo-titulo">
+  <div class="container modelo__grade">
+    <header class="modelo__cab" data-revela>
+      <span class="rotulo">O modelo</span>
+      <h2 class="titulo" id="modelo-titulo">A bolsa e o imóvel, no mesmo contrato.</h2>
+      <p class="texto-apoio modelo__apoio">Três partes que trabalham juntas em cada operação.</p>
+    </header>
+
+    <ul class="modelo__cards" role="list">
+      <li class="card card--sobe pilar" data-revela style="--i:1">
+        <i data-i="chart-bar" class="icone pilar__icone"></i>
+        <div class="pilar__corpo">
+          <h3 class="pilar__titulo">Estratégia na bolsa</h3>
+          <p class="pilar__texto">Aplicação na bolsa de valores com estratégia estruturada e análise de mercado.</p>
+          <a class="link-zap pilar__zap" href="{{wa:estrategia}}" target="_blank" rel="noopener" data-zap="modelo-estrategia" data-evento="tema"><i data-i="whatsapp-logo" data-w="regular"></i>Falar sobre isso</a>
+        </div>
+      </li>
+      <li class="card card--sobe pilar pilar--destaque" data-revela style="--i:2">
+        <i data-i="house-line" class="icone pilar__icone"></i>
+        <div class="pilar__corpo">
+          <h3 class="pilar__titulo">Imóvel em garantia</h3>
+          <p class="pilar__texto">Cada operação tem um imóvel como garantia, descrito no contrato. Patrimônio real por trás do seu investimento.</p>
+          <a class="link-zap pilar__zap" href="{{wa:garantia}}" target="_blank" rel="noopener" data-zap="modelo-garantia" data-evento="tema"><i data-i="whatsapp-logo" data-w="regular"></i>Falar sobre isso</a>
+        </div>
+      </li>
+      <li class="card card--sobe pilar" data-revela style="--i:3">
+        <i data-i="file-magnifying-glass" class="icone pilar__icone"></i>
+        <div class="pilar__corpo">
+          <h3 class="pilar__titulo">Acompanhamento e gestão de risco</h3>
+          <p class="pilar__texto">Gestão de risco contínua e acompanhamento de cada etapa da operação, com prestação de contas ao investidor.</p>
+          <a class="link-zap pilar__zap" href="{{wa:acompanhamento}}" target="_blank" rel="noopener" data-zap="modelo-acompanhamento" data-evento="tema"><i data-i="whatsapp-logo" data-w="regular"></i>Falar sobre isso</a>
+        </div>
+      </li>
+    </ul>
+
+    <a class="btn btn--contorno-escuro modelo__btn" href="#garantia" data-revela style="--i:1">Ver como a garantia funciona<i data-i="arrow-right" data-w="regular" class="seta"></i></a>
+  </div>
+</section>

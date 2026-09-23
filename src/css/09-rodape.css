@@ -1,0 +1,107 @@
+/* ================================================================ 09 · Rodapé
+   Mockup: um tom mais fundo que o CTA, separado por um fio, quatro colunas
+   (marca, navegação, contato e legal, com o fio dourado e a linha da marca em
+   caixa alta espaçada) e a linha do copyright embaixo. Aqui entra também o
+   aviso de risco da copy. No celular: blocos empilhados, marca centralizada. */
+
+.rodape {
+  position: relative;
+  padding: clamp(48px, 5vw, 72px) 0 max(28px, env(safe-area-inset-bottom));
+  border-top: 1px solid rgb(94 99 107 / .38);
+  background: var(--tinta-funda);
+  color: var(--prata);
+  font-size: 15px;
+}
+
+.rodape__grade {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, .8fr) minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: 36px clamp(24px, 3.4vw, 56px);
+}
+.rodape__marca img { width: 264px; height: auto; }
+.rodape__marca p { max-width: 28ch; margin-top: 18px; color: var(--prata); line-height: 1.55; }
+.rodape__rede {
+  display: inline-grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  margin-top: 16px;
+  margin-left: -10px;
+  border-radius: 50%;
+  color: var(--papel);
+  transition: color .25s ease, background-color .25s ease;
+}
+.rodape__rede .i { width: 24px; height: 24px; }
+.rodape__rede:hover { color: var(--ouro-texto); background: rgb(255 255 255 / .05); }
+
+.rodape__titulo { margin-bottom: 14px; color: var(--papel); font: 600 16px/1.2 var(--fonte-texto); }
+.rodape__links { display: grid; gap: 4px; }
+.rodape__links a,
+.rodape__links span { display: inline-flex; min-height: 30px; align-items: center; }
+.rodape__links a,
+.rodape__contato a { transition: color .25s ease; }
+.rodape__links a:hover,
+.rodape__contato a:hover { color: var(--ouro-texto); }
+
+.rodape__contato { display: grid; gap: 12px; }
+.rodape__contato li { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 12px; align-items: start; line-height: 1.5; }
+.rodape__contato .i { width: 21px; height: 21px; margin-top: 1px; color: var(--papel); }
+.rodape__contato a { overflow-wrap: anywhere; }
+
+/* coluna legal: o fio dourado e a linha da marca, como no mockup */
+.rodape__legal { display: flex; flex-direction: column; }
+.rodape__assinatura {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  margin-top: auto;
+  padding-top: 28px;
+  color: rgb(172 173 175 / .9);
+  font: 500 12px/1.75 var(--fonte-texto);
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+/* do 1280 pra cima cabe como no mockup: fio à esquerda e as duas linhas ao lado */
+@media (min-width: 1280px) {
+  .rodape__assinatura { flex-direction: row; align-items: center; gap: 18px; white-space: nowrap; }
+}
+.rodape__fio { flex: none; width: 40px; height: 2px; background: var(--ouro); }
+
+.rodape__aviso {
+  margin-top: clamp(36px, 4vw, 52px);
+  padding-top: 22px;
+  border-top: 1px solid rgb(94 99 107 / .3);
+  color: rgb(172 173 175 / .82);
+  font-size: 13px;
+  line-height: 1.6;
+}
+.rodape__aviso p { max-width: 110ch; }
+
+.rodape__base {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px 24px;
+  margin-top: 18px;
+  color: rgb(172 173 175 / .82);
+  font-size: 13px;
+}
+.rodape__base a { color: var(--prata); text-decoration: underline; text-decoration-color: rgb(172 173 175 / .35); text-underline-offset: 3px; }
+.rodape__base a:hover { color: var(--ouro-texto); }
+
+/* ---------------------------------------------------------------- tablet */
+@media (max-width: 1023.98px) {
+  .rodape__grade { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* ---------------------------------------------------------------- celular */
+@media (max-width: 599.98px) {
+  .rodape__grade { grid-template-columns: 1fr; gap: 32px; }
+  .rodape__marca { display: grid; justify-items: center; text-align: center; }
+  .rodape__marca img { width: 230px; }
+  .rodape__rede { margin-left: 0; }
+  .rodape__assinatura { align-items: center; text-align: center; }
+  .rodape__base { flex-direction: column; align-items: center; text-align: center; }
+  .rodape__aviso { text-align: center; }
+}

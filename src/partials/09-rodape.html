@@ -1,0 +1,73 @@
+  <!-- 09 · Rodapé (bloco 12 da copy, no desenho do mockup). Quatro colunas no desktop:
+       marca, navegação, contato e a coluna legal com o fio dourado e a linha da marca
+       embaixo. E-mail, endereço, horário, Instagram, CNPJ e registro na CVM só
+       aparecem quando o config tiver (a On Top ainda vai mandar). Redes sociais do
+       mockup (LinkedIn, YouTube), e-mail e "São Paulo" eram inventados e saíram.
+       O aviso de risco da copy entra acima do crédito. -->
+  <footer class="rodape escuro" aria-labelledby="rodape-titulo">
+    <h2 class="sr-only" id="rodape-titulo">Rodapé</h2>
+    <div class="container rodape__grade">
+      <div class="rodape__marca">
+        <img data-img="logo-horizontal" data-img-max="600" sizes="264px" alt="On Top Business" loading="lazy" decoding="async">
+        <p>Cada operação na bolsa tem um imóvel como garantia, descrito em contrato.</p>
+        <!-- @se cfg.instagram -->
+        <a class="rodape__rede" href="{{cfg.instagram}}" target="_blank" rel="noopener" aria-label="Instagram da On Top Business"><i data-i="instagram-logo" data-w="regular"></i></a>
+        <!-- /@se -->
+      </div>
+
+      <nav class="rodape__col" aria-labelledby="rodape-nav">
+        <h3 class="rodape__titulo" id="rodape-nav">Navegação</h3>
+        <ul class="rodape__links" role="list">
+          <li><a href="#modelo">O modelo</a></li>
+          <li><a href="#garantia">A garantia</a></li>
+          <li><a href="#quem-somos">Quem somos</a></li>
+          <li><a href="#como-funciona">Como funciona</a></li>
+          <li><a href="#duvidas">Dúvidas</a></li>
+        </ul>
+      </nav>
+
+      <div class="rodape__col">
+        <h3 class="rodape__titulo">Contato</h3>
+        <address>
+          <ul class="rodape__contato" role="list">
+            <li><i data-i="whatsapp-logo" data-w="regular"></i><a href="{{wa:conversa}}" target="_blank" rel="noopener" data-zap="rodape">{{cfg.whatsappExibir}}</a></li>
+            <!-- @se cfg.email -->
+            <li><i data-i="envelope-simple" data-w="regular"></i><a href="mailto:{{cfg.email}}">{{cfg.email}}</a></li>
+            <!-- /@se -->
+            <!-- @se cfg.endereco -->
+            <li><i data-i="map-pin" data-w="regular"></i><span>{{cfg.endereco}}</span></li>
+            <!-- /@se -->
+            <!-- @se cfg.horario -->
+            <li><i data-i="clock" data-w="regular"></i><span>{{cfg.horario}}</span></li>
+            <!-- /@se -->
+          </ul>
+        </address>
+      </div>
+
+      <div class="rodape__col rodape__legal">
+        <h3 class="rodape__titulo">Legal</h3>
+        <ul class="rodape__links" role="list">
+          <!-- @se cfg.razaoSocial -->
+          <li><span>{{cfg.razaoSocial}}</span></li>
+          <!-- /@se -->
+          <!-- @se cfg.cnpj -->
+          <li><span>CNPJ {{cfg.cnpj}}</span></li>
+          <!-- /@se -->
+          <!-- @se cfg.registroCvm -->
+          <li><span>{{cfg.registroCvm}}</span></li>
+          <!-- /@se -->
+          <li><a href="/politica-de-privacidade">Política de privacidade</a></li>
+        </ul>
+        <p class="rodape__assinatura"><span class="rodape__fio" aria-hidden="true"></span>Estratégia na bolsa. <br>Garantia em imóvel.</p>
+      </div>
+    </div>
+
+    <div class="container rodape__aviso">
+      <p>Todo investimento envolve risco, inclusive de perda. A garantia imobiliária vale nas condições do contrato de cada operação. Rentabilidade passada não garante rentabilidade futura. Leia o contrato com atenção antes de investir.</p>
+    </div>
+
+    <div class="container rodape__base">
+      <p>© {{ano}} On Top Business · Todos os direitos reservados</p>
+      <p>Site por <a href="{{cfg.credito}}" target="_blank" rel="noopener">Credialta Sites</a></p>
+    </div>
+  </footer>

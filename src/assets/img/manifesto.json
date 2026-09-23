@@ -1,0 +1,157 @@
+{
+ "hero-desktop-960.avif": {
+  "w": 960,
+  "h": 540,
+  "kb": 32
+ },
+ "hero-desktop-960.webp": {
+  "w": 960,
+  "h": 540,
+  "kb": 44
+ },
+ "hero-desktop-1280.avif": {
+  "w": 1280,
+  "h": 720,
+  "kb": 49
+ },
+ "hero-desktop-1280.webp": {
+  "w": 1280,
+  "h": 720,
+  "kb": 68
+ },
+ "hero-desktop-1672.avif": {
+  "w": 1672,
+  "h": 941,
+  "kb": 71
+ },
+ "hero-desktop-1672.webp": {
+  "w": 1672,
+  "h": 941,
+  "kb": 99
+ },
+ "hero-celular-480.avif": {
+  "w": 480,
+  "h": 853,
+  "kb": 28
+ },
+ "hero-celular-480.webp": {
+  "w": 480,
+  "h": 853,
+  "kb": 42
+ },
+ "hero-celular-720.avif": {
+  "w": 720,
+  "h": 1279,
+  "kb": 50
+ },
+ "hero-celular-720.webp": {
+  "w": 720,
+  "h": 1279,
+  "kb": 74
+ },
+ "hero-celular-800.avif": {
+  "w": 800,
+  "h": 1421,
+  "kb": 58
+ },
+ "hero-celular-800.webp": {
+  "w": 800,
+  "h": 1421,
+  "kb": 85
+ },
+ "hero-celular-941.avif": {
+  "w": 941,
+  "h": 1672,
+  "kb": 72
+ },
+ "hero-celular-941.webp": {
+  "w": 941,
+  "h": 1672,
+  "kb": 105
+ },
+ "imovel-480.webp": {
+  "w": 480,
+  "h": 270,
+  "kb": 27
+ },
+ "imovel-720.webp": {
+  "w": 720,
+  "h": 405,
+  "kb": 54
+ },
+ "imovel-960.webp": {
+  "w": 960,
+  "h": 540,
+  "kb": 87
+ },
+ "imovel-1280.webp": {
+  "w": 1280,
+  "h": 720,
+  "kb": 138
+ },
+ "imovel-1672.webp": {
+  "w": 1672,
+  "h": 941,
+  "kb": 204
+ },
+ "grafico-900.webp": {
+  "w": 900,
+  "h": 301,
+  "kb": 73
+ },
+ "grafico-1400.webp": {
+  "w": 1400,
+  "h": 468,
+  "kb": 161
+ },
+ "grafico-2167.webp": {
+  "w": 2167,
+  "h": 725,
+  "kb": 396
+ },
+ "yoshida-460.webp": {
+  "w": 460,
+  "h": 565,
+  "kb": 14
+ },
+ "yoshida-700.webp": {
+  "w": 700,
+  "h": 859,
+  "kb": 26
+ },
+ "yoshida-896.webp": {
+  "w": 896,
+  "h": 1100,
+  "kb": 41
+ },
+ "logo-horizontal-300.webp": {
+  "w": 300,
+  "h": 69,
+  "kb": 12
+ },
+ "logo-horizontal-420.webp": {
+  "w": 420,
+  "h": 96,
+  "kb": 18
+ },
+ "logo-horizontal-600.webp": {
+  "w": 600,
+  "h": 137,
+  "kb": 28
+ },
+ "logo-horizontal-900.webp": {
+  "w": 900,
+  "h": 206,
+  "kb": 48
+ },
+ "logo-empilhado-600.png": {
+  "w": 600,
+  "h": 508,
+  "kb": 330
+ },
+ "og-on-top-business.jpg": {
+  "w": 1200,
+  "h": 630,
+  "kb": 83
+ }
+}

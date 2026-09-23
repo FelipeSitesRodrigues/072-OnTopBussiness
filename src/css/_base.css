@@ -1,0 +1,299 @@
+/* ---------------------------------------------------------------- tokens
+   Paleta do prompt técnico, conferida no mockup aprovado. Cada seção escolhe o
+   fundo com uma classe (.secao--escura, --papel ou --branca) e o fundo acerta
+   título, texto, rótulo e destaque pelas variáveis --cor-*.
+   Dourado é acento, nunca bloco de fundo, e o metálico fica só no logo.
+   --ouro-texto é o dourado das palavras em destaque e do botão, medido no
+   mockup (#E3AD45): o #D3A134 do logo fica apagado em letra grande no escuro.  */
+:root {
+  --tinta: #111418;
+  --tinta-funda: #0B0E12;
+  --grafite: #1C2027;
+  --papel: #F4F0E8;
+  --branco: #FFFFFF;
+  --pedra: #5E636B;
+  --prata: #ACADAF;
+  --ouro: #D3A134;
+  --ouro-texto: #E0AC45;
+  --ouro-escuro: #7E5E16;
+  --borda-clara: #E2DCCF;
+  --texto-escuro: rgb(244 240 232 / .84);
+  --linha-escura: rgb(94 99 107 / .45);
+
+  --fonte-titulo: 'Archivo Titulo', 'Arial Narrow', 'Roboto Condensed', system-ui, sans-serif;
+  --fonte-texto: 'Instrument Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --fonte-citacao: 'Newsreader Italico', Georgia, 'Times New Roman', serif;
+
+  --container: 1280px;
+  --margem: clamp(20px, 5vw, 80px);
+  --secao-y: clamp(64px, 6.4vw, 96px);
+  --altura-header: 88px;
+  --raio: 12px;
+  --raio-btn: 10px;
+
+  --ouro-botao: linear-gradient(180deg, #E9C366 0%, #DCAE4E 48%, #C99A3A 100%);
+  --sombra-card: 0 1px 2px rgb(17 20 24 / .04), 0 14px 32px -22px rgb(17 20 24 / .22);
+  --sombra-card-hover: 0 2px 4px rgb(17 20 24 / .05), 0 22px 40px -22px rgb(17 20 24 / .3);
+  --ease-out: cubic-bezier(.23, 1, .32, 1);
+  --ease-in-out: cubic-bezier(.65, 0, .35, 1);
+
+  /* cores de contexto (fundo claro é o padrão) */
+  --cor-fundo: var(--papel);
+  --cor-titulo: var(--tinta);
+  --cor-texto: var(--pedra);
+  --cor-rotulo: var(--ouro-escuro);
+  --cor-destaque: var(--ouro-escuro);
+  --cor-icone: var(--ouro-escuro);
+  --cor-foco: var(--ouro-escuro);
+}
+@media (max-width: 1099.98px) {
+  :root { --altura-header: 72px; }
+}
+
+/* ---------------------------------------------------------------- reset */
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; }
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--altura-header);
+  background: var(--tinta);
+}
+body {
+  min-height: 100vh;
+  background: var(--tinta);
+  color: var(--pedra);
+  font: 400 16px/1.6 var(--fonte-texto);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  overflow-x: clip;
+}
+img, picture, svg, video { display: block; max-width: 100%; }
+img { height: auto; }
+button, input { font: inherit; color: inherit; }
+button { cursor: pointer; background: none; border: 0; padding: 0; }
+a { color: inherit; text-decoration: none; }
+ul, ol { list-style: none; padding: 0; }
+h1, h2, h3, h4 { font-weight: inherit; font-size: inherit; line-height: inherit; }
+em { font-style: normal; }
+address { font-style: normal; }
+strong { font-weight: 600; }
+:focus-visible { outline: 2px solid var(--cor-foco); outline-offset: 3px; }
+
+.pular {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 200;
+  padding: 12px 18px;
+  border-radius: var(--raio-btn);
+  background: var(--ouro-botao);
+  color: var(--tinta);
+  font: 600 15px/1 var(--fonte-texto);
+  transform: translateY(-160%);
+  transition: transform .2s var(--ease-out);
+}
+.pular:focus { transform: none; }
+.sr-only {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.container { width: min(var(--container), 100% - var(--margem) * 2); margin-inline: auto; }
+
+/* ---------------------------------------------------------------- fundos das seções */
+.secao { position: relative; padding-block: var(--secao-y); background: var(--cor-fundo); isolation: isolate; }
+/* papel: com uma luz quente no alto, como o papel do mockup */
+.secao--papel {
+  --cor-fundo: var(--papel);
+  background:
+    radial-gradient(60% 80% at 8% 0%, rgb(255 255 255 / .55), transparent 70%),
+    radial-gradient(50% 70% at 100% 100%, rgb(226 220 207 / .45), transparent 72%),
+    var(--papel);
+}
+.secao--branca {
+  --cor-fundo: #FAF9F6;
+  background:
+    radial-gradient(60% 80% at 90% 0%, rgb(255 255 255 / .9), transparent 70%),
+    #FAF9F6;
+}
+.secao--escura, .escuro {
+  --cor-fundo: var(--tinta);
+  --cor-titulo: var(--papel);
+  --cor-texto: var(--texto-escuro);
+  --cor-rotulo: var(--ouro);
+  --cor-destaque: var(--ouro-texto);
+  --cor-icone: var(--ouro);
+  --cor-foco: var(--ouro-texto);
+  color: var(--cor-texto);
+}
+.secao--escura {
+  background:
+    radial-gradient(70% 90% at 90% 0%, rgb(28 32 39 / .7), transparent 65%),
+    radial-gradient(60% 80% at 0% 100%, rgb(11 14 18 / .7), transparent 70%),
+    var(--tinta);
+}
+
+/* ---------------------------------------------------------------- tipografia */
+.rotulo {
+  display: block;
+  color: var(--cor-rotulo);
+  font: 600 13px/1.35 var(--fonte-texto);
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+/* títulos do mockup: grotesco condensado, pesado, em caixa alta */
+.titulo {
+  color: var(--cor-titulo);
+  font-family: var(--fonte-titulo);
+  font-weight: 700;
+  font-size: clamp(2rem, 1.3rem + 1.9vw, 2.9rem);
+  line-height: 1.02;
+  letter-spacing: .004em;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+.rotulo + .titulo { margin-top: 14px; }
+.destaque { color: var(--cor-destaque); }
+.texto-apoio {
+  color: var(--cor-texto);
+  font-size: clamp(16px, 15.4px + .2vw, 18px);
+  line-height: 1.62;
+}
+
+/* ---------------------------------------------------------------- botões
+   Retângulo de canto arredondado, como no mockup (não é pílula).           */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 54px;
+  padding: 0 26px;
+  border: 1.5px solid transparent;
+  border-radius: var(--raio-btn);
+  font: 600 16.5px/1.15 var(--fonte-texto);
+  letter-spacing: .005em;
+  text-align: center;
+  cursor: pointer;
+  transition: transform .3s var(--ease-out), background-color .25s ease, border-color .25s ease, color .25s ease, box-shadow .35s var(--ease-out), filter .25s ease;
+}
+.btn .i { width: 22px; height: 22px; flex: none; }
+.btn .seta { width: 18px; height: 18px; transition: transform .3s var(--ease-out); }
+.btn:hover .seta { transform: translateX(3px); }
+.btn:active { transform: translateY(0) scale(.985); transition-duration: .1s; }
+
+.btn--ouro {
+  --cor-foco: var(--ouro-texto);
+  background: var(--ouro-botao);
+  color: var(--tinta);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / .38), 0 10px 26px -16px rgb(211 161 52 / .75);
+}
+.btn--ouro:hover { filter: brightness(1.05); transform: translateY(-1px); box-shadow: inset 0 1px 0 rgb(255 255 255 / .42), 0 14px 30px -16px rgb(211 161 52 / .9); }
+.btn--contorno-claro { border-color: rgb(244 240 232 / .85); color: var(--papel); }
+.btn--contorno-claro:hover { border-color: var(--branco); background: rgb(255 255 255 / .06); transform: translateY(-1px); }
+.btn--contorno-escuro { border-color: #C4A46E; color: var(--tinta); }
+.btn--contorno-escuro:hover { border-color: var(--ouro-escuro); background: rgb(126 94 22 / .06); transform: translateY(-1px); }
+
+/* link pequeno de WhatsApp dentro de card ("Falar sobre isso") */
+.link-zap {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 40px;
+  color: var(--ouro-escuro);
+  font: 600 15px/1.2 var(--fonte-texto);
+  text-decoration: underline;
+  text-decoration-color: rgb(126 94 22 / .3);
+  text-underline-offset: 4px;
+  transition: color .25s ease, text-decoration-color .25s ease;
+}
+.link-zap .i { width: 19px; height: 19px; flex: none; }
+.link-zap:hover { color: var(--tinta); text-decoration-color: currentColor; }
+
+/* ---------------------------------------------------------------- CTA de seção
+   Fecha as seções que não têm botão no desenho do mockup (Como funciona,
+   Por que a On Top e Dúvidas): centralizado, uma linha de apoio do assunto da
+   seção e o botão dourado. O fio curto acima separa do conteúdo sem virar caixa. */
+.cta-secao {
+  display: grid;
+  justify-items: center;
+  gap: 16px;
+  margin-top: clamp(44px, 4.6vw, 68px);
+  text-align: center;
+}
+.cta-secao::before {
+  content: '';
+  width: 56px;
+  height: 1px;
+  margin-bottom: 8px;
+  background: linear-gradient(90deg, transparent, var(--cor-icone), transparent);
+  opacity: .6;
+}
+.cta-secao__texto {
+  max-width: 46ch;
+  color: var(--cor-texto);
+  font-size: clamp(16px, 15.4px + .2vw, 18px);
+  line-height: 1.55;
+  text-wrap: balance;
+}
+@media (max-width: 519.98px) {
+  .cta-secao .btn { width: 100%; }
+}
+
+/* ---------------------------------------------------------------- cards */
+.card {
+  position: relative;
+  border: 1px solid var(--borda-clara);
+  border-radius: var(--raio);
+  background: rgb(255 255 255 / .72);
+  box-shadow: var(--sombra-card);
+  transition: transform .3s var(--ease-out), box-shadow .35s var(--ease-out), border-color .25s ease;
+}
+@media (hover: hover) {
+  .card--sobe:hover { transform: translateY(-3px); box-shadow: var(--sombra-card-hover); border-color: #D5CBB5; }
+}
+.icone { width: 48px; height: 48px; flex: none; color: var(--cor-icone); }
+
+/* ---------------------------------------------------------------- anel do logo
+   O O do monograma, aberto no alto à direita. Assinatura visual da copy: número
+   dos passos do Como funciona. Nunca em volta de botão.                     */
+.anel { display: block; width: 100%; height: 100%; overflow: visible; }
+.anel path { fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; vector-effect: non-scaling-stroke; }
+
+/* ---------------------------------------------------------------- revelação no scroll
+   O padrão é visível. Só esconde com JS ligado e sem "reduzir movimento", e o
+   JS (_base.js) marca .visivel quando o elemento entra na tela.
+   Parado, tudo esconde SÓ com opacidade: o Chrome conta o clip-path no
+   IntersectionObserver e um elemento recortado a zero nunca "entra na tela"
+   (bug do 067). Recorte e escala ficam só no primeiro quadro da animação.   */
+@keyframes revela-sobe { from { opacity: 0; transform: translateY(22px); } }
+@keyframes revela-foto { from { clip-path: inset(0 0 100% 0 round var(--raio)); } to { clip-path: inset(0 0 0 0 round var(--raio)); } }
+@keyframes revela-linha { from { transform: scaleX(0); } }
+@keyframes assenta { from { transform: scale(1.06); } }
+
+@media (prefers-reduced-motion: no-preference) {
+  .js [data-revela]:not(.visivel) { opacity: 0; }
+  .js [data-revela].visivel { animation: revela-sobe .7s var(--ease-out) calc(var(--i, 0) * 70ms) backwards; }
+  .js [data-revela="foto"].visivel { animation: revela-foto 1.05s var(--ease-in-out) calc(var(--i, 0) * 70ms) backwards; }
+  .js [data-revela="foto"].visivel img { animation: assenta 1.5s var(--ease-out) calc(var(--i, 0) * 70ms) backwards; }
+  .js [data-revela="linha"].visivel { animation: revela-linha 1.3s var(--ease-out) backwards; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    transition-delay: 0ms !important;
+  }
+}

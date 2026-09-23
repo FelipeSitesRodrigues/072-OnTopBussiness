@@ -1,0 +1,84 @@
+/* ================================================================ 05 · Como funciona
+   Não existe no mockup: segue as seções escuras dele (rótulo dourado, título em
+   caixa alta com o fim em dourado). 5 passos com o número dentro do anel do logo
+   e um fio dourado fino ligando um anel ao próximo. No celular, linha do tempo
+   vertical com o fio descendo pela esquerda.                                   */
+
+.como__cab { max-width: 40em; margin-bottom: clamp(36px, 4vw, 56px); }
+
+.passos {
+  --anel: 56px;
+  --vao: 24px;
+  display: grid;
+  gap: var(--vao);
+}
+.passo {
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--anel) minmax(0, 1fr);
+  gap: 18px;
+  align-items: start;
+}
+.passo__marca {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: var(--anel);
+  height: var(--anel);
+  color: var(--ouro);
+}
+.passo__marca .anel { position: absolute; inset: 0; }
+.passo__num {
+  position: relative;
+  color: var(--ouro-texto);
+  font: 700 22px/1 var(--fonte-titulo);
+}
+/* fio entre um anel e o próximo (celular: vertical) */
+.passo:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  left: calc(var(--anel) / 2);
+  top: calc(var(--anel) + 8px);
+  bottom: calc(var(--vao) * -1 + 8px);
+  width: 1px;
+  background: linear-gradient(180deg, rgb(211 161 52 / .7), rgb(211 161 52 / .25));
+}
+.passo__corpo { padding-top: 6px; }
+.passo__titulo {
+  color: var(--papel);
+  font: 700 19px/1.2 var(--fonte-titulo);
+  letter-spacing: .03em;
+  text-transform: uppercase;
+}
+.passo__texto { margin-top: 8px; color: var(--texto-escuro); font-size: 15.5px; line-height: 1.58; }
+
+/* ---------------------------------------------------------------- desktop: em linha */
+@media (min-width: 1024px) {
+  .passos {
+    --anel: 60px;
+    --vao: clamp(20px, 2.2vw, 32px);
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+  .passo { grid-template-columns: 1fr; gap: 20px; }
+  .passo:not(:last-child)::after {
+    left: calc(var(--anel) + 10px);
+    right: calc(var(--vao) * -1 + 10px);
+    top: calc(var(--anel) / 2);
+    bottom: auto;
+    width: auto;
+    height: 1px;
+    background: linear-gradient(90deg, rgb(211 161 52 / .75), rgb(211 161 52 / .3));
+  }
+  .passo__corpo { padding-top: 0; }
+  .passo__titulo { font-size: clamp(18px, 16px + .3vw, 20px); }
+  .passo__texto { font-size: 15px; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .js .passo.visivel:not(:last-child)::after { animation: revela-linha 1.1s var(--ease-out) calc(var(--i, 0) * 70ms + .25s) backwards; transform-origin: 0 0; }
+}
+
+/* 1024 a 1279: alguns títulos quebram em duas linhas; todos ocupam duas, com o texto na mesma altura */
+@media (min-width: 1024px) and (max-width: 1279.98px) {
+  .passo__titulo { display: flex; align-items: flex-end; min-height: 2.4em; }
+}

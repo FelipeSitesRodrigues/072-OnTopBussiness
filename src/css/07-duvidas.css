@@ -1,0 +1,80 @@
+/* ================================================================ 07 · Antes de investir
+   Papel, com o acordeão num card claro de borda fina (o mesmo card do mockup).
+   Linhas limpas, fio fino entre elas e um + dourado escuro que vira -. No
+   desktop o título fica parado à esquerda enquanto a lista rola.             */
+
+.duvidas__grade {
+  display: grid;
+  gap: 28px;
+}
+
+.faq {
+  padding: 6px clamp(20px, 2.4vw, 34px);
+  border: 1px solid var(--borda-clara);
+  border-radius: var(--raio);
+  background: rgb(255 255 255 / .78);
+  box-shadow: var(--sombra-card);
+}
+.faq__item + .faq__item { border-top: 1px solid #E8E2D6; }
+.faq__pergunta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 68px;
+  padding: 16px 0;
+  color: var(--tinta);
+  font: 600 clamp(16.5px, 15.8px + .25vw, 18.5px)/1.3 var(--fonte-texto);
+  cursor: pointer;
+  list-style: none;
+  transition: color .25s ease;
+}
+.faq__pergunta::-webkit-details-marker { display: none; }
+.faq__pergunta:hover { color: var(--ouro-escuro); }
+.faq__pergunta:focus-visible { outline-offset: -2px; border-radius: 6px; }
+/* sinal de + que vira - (dois traços, o vertical some ao abrir) */
+.faq__sinal {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  flex: none;
+  border: 1px solid rgb(126 94 22 / .4);
+  border-radius: 50%;
+  transition: background-color .25s ease;
+}
+.faq__sinal::before,
+.faq__sinal::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 12px;
+  height: 1.5px;
+  border-radius: 1px;
+  background: var(--ouro-escuro);
+  translate: -50% -50%;
+  transition: transform .35s var(--ease-out);
+}
+.faq__sinal::after { transform: rotate(90deg); }
+.faq__item[open] .faq__sinal { background: rgb(126 94 22 / .07); }
+.faq__item[open] .faq__sinal::after { transform: rotate(0); }
+.faq__resposta { display: grid; gap: 10px; padding: 0 48px 22px 0; color: var(--pedra); font-size: 16px; line-height: 1.62; }
+@media (prefers-reduced-motion: no-preference) {
+  .faq__item[open] .faq__resposta { animation: faq-abre .4s var(--ease-out); }
+}
+@keyframes faq-abre { from { opacity: 0; transform: translateY(-6px); } }
+
+@media (max-width: 599.98px) {
+  .faq__resposta { padding-right: 6px; }
+}
+
+/* ---------------------------------------------------------------- desktop */
+@media (min-width: 1024px) {
+  .duvidas__grade {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2.1fr);
+    column-gap: clamp(40px, 4vw, 64px);
+    align-items: start;
+  }
+  .duvidas__cab { position: sticky; top: calc(var(--altura-header) + 32px); }
+  .duvidas__cta { grid-column: 1 / -1; }
+}

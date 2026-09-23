@@ -1,0 +1,23 @@
+<!-- 08 · CTA final (bloco 11 da copy, no desenho do mockup). Escuro: título e texto à
+     esquerda, os dois botões empilhados à direita e o gráfico dourado de fundo, só
+     como grafismo (sem número nenhum). O rótulo "Vamos conversar?" do mockup não é
+     da copy e saiu. -->
+<section class="secao secao--escura cta" id="contato" aria-labelledby="cta-titulo">
+  <div class="cta__grafico" aria-hidden="true">
+    <img data-img="grafico" sizes="(min-width: 768px) 70vw, 140vw" alt="" loading="lazy" decoding="async">
+  </div>
+
+  <div class="container cta__grade">
+    <div class="cta__texto" data-revela>
+      <h2 class="titulo cta__titulo" id="cta-titulo">Conheça a operação <span class="destaque">antes de investir</span> um real.</h2>
+      <p class="texto-apoio cta__apoio">Uma conversa pra você entender a estratégia, ver como a garantia funciona e tirar todas as dúvidas. A decisão fica pra depois, no seu tempo.</p>
+    </div>
+
+    <div class="cta__acoes" data-revela style="--i:1">
+      <a class="btn btn--ouro cta__btn" href="{{wa:conversa}}" target="_blank" rel="noopener" data-zap="cta-final"><i data-i="whatsapp-logo" data-w="regular"></i>Marcar uma conversa</a>
+      <a class="btn btn--contorno-claro cta__btn" href="#garantia">Ver como a garantia funciona</a>
+      <p class="cta__numero"><i data-i="whatsapp-logo" data-w="regular"></i>{{cfg.whatsappExibir}}</p>
+      <p class="cta__nota">Sem pressa pra decidir · Tudo por escrito, em contrato</p>
+    </div>
+  </div>
+</section>

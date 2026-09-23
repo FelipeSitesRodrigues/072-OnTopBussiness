@@ -1,0 +1,334 @@
+/* ================================================================ 01 · hero + faixa de pilares
+   Celular (ordem da casa: título, foto, subtítulo, botões): a foto vertical começa
+   logo abaixo do header, o título fica no alto escurecido dela e o escritório
+   aparece embaixo; subtítulo e botões entram no pé da foto, já apagado pro escuro.
+   Os filhos do bloco de texto ficam soltos no grid do hero (display: contents).
+   Desktop (768+): foto ocupando o hero todo, texto à esquerda sobre o véu escuro e
+   a faixa de pilares numa banda própria logo abaixo, como no mockup.
+   A entrada roda só com CSS, sem esperar o JS: o título é o LCP provável.        */
+
+.hero {
+  display: grid;
+  grid-template-columns: var(--margem) minmax(0, 1fr) var(--margem);
+  grid-template-rows: auto auto auto auto auto auto;
+  padding-block: var(--altura-header) 0;
+  overflow: clip;
+  background: var(--tinta);
+}
+
+/* ---------------------------------------------------------------- foto */
+.hero__foto {
+  grid-column: 1 / -1;
+  grid-row: 1 / 3;
+  position: relative;
+  z-index: 0;
+  aspect-ratio: 941 / 1672;
+  background: var(--tinta);
+}
+.hero__foto img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 50%;
+}
+/* véu: escurece o alto (atrás do título) e apaga o pé pro escuro, deixando o
+   pôr do sol, a cadeira e o touro (35 a 80% da altura da foto) aparecendo */
+.hero__foto::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg,
+    rgb(17 20 24 / .96) 0%,
+    rgb(17 20 24 / .82) 16%,
+    rgb(17 20 24 / .2) 34%,
+    rgb(17 20 24 / 0) 44%,
+    rgb(17 20 24 / 0) 70%,
+    rgb(17 20 24 / .6) 82%,
+    rgb(17 20 24 / .94) 93%,
+    var(--tinta) 100%);
+}
+
+/* ---------------------------------------------------------------- texto (celular) */
+.hero__conteudo { display: contents; }
+
+.hero__cab {
+  grid-column: 2;
+  grid-row: 1;
+  align-self: start;
+  position: relative;
+  z-index: 1;
+  padding-top: 26px;
+}
+.hero__rotulo {
+  color: rgb(244 240 232 / .86);
+  font-size: 12.5px;
+  letter-spacing: .16em;
+}
+.hero__titulo {
+  display: block;
+  margin-top: 12px;
+  color: var(--papel);
+  font-family: var(--fonte-titulo);
+  font-weight: 700;
+  /* no celular a linha mais longa ("Invista na bolsa") enche a largura útil */
+  font-size: clamp(2.1rem, (100vw - 2 * var(--margem)) / 7.6, 3.6rem);
+  line-height: 1;
+  letter-spacing: .004em;
+  text-transform: uppercase;
+  text-shadow: 0 2px 18px rgb(17 20 24 / .5);
+}
+.hero__verso { display: block; }
+.hero__titulo .destaque { color: var(--ouro-texto); }
+
+.hero__sub {
+  grid-column: 2;
+  grid-row: 3;
+  position: relative;
+  z-index: 1;
+  margin-top: -64px;
+  color: rgb(244 240 232 / .9);
+  font-size: 17px;
+  line-height: 1.58;
+}
+
+.hero__acoes {
+  grid-column: 2;
+  grid-row: 4;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 24px;
+}
+.hero__btn { width: 100%; min-height: 56px; font-size: 17px; }
+.hero__acoes .btn--contorno-claro { background: rgb(17 20 24 / .35); }
+.hero__acoes .btn--contorno-claro:hover { background: rgb(255 255 255 / .06); }
+
+.hero__nota {
+  grid-column: 2;
+  grid-row: 5;
+  margin-top: 18px;
+  padding-bottom: 30px;
+  color: var(--prata);
+  font-size: 14px;
+  line-height: 1.5;
+  text-align: center;
+  text-wrap: balance;
+}
+
+/* ---------------------------------------------------------------- faixa de pilares (celular: carrossel) */
+.faixa {
+  grid-column: 1 / -1;
+  grid-row: 6;
+  position: relative;
+  z-index: 1;
+  border-top: 1px solid var(--linha-escura);
+  border-bottom: 1px solid rgb(94 99 107 / .25);
+  background: linear-gradient(180deg, #161B22, #12171D);
+}
+.faixa__moldura {
+  position: relative;
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr) 44px;
+  align-items: center;
+  padding-block: 18px 14px;
+}
+.faixa__trilho {
+  grid-column: 2;
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  overscroll-behavior-x: contain;
+}
+.faixa__trilho::-webkit-scrollbar { display: none; }
+.faixa__item {
+  flex: 0 0 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  min-height: 64px;
+  padding-inline: 6px;
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+}
+.faixa__icone { width: 40px; height: 40px; flex: none; color: var(--papel); }
+.faixa__texto {
+  color: rgb(244 240 232 / .92);
+  font: 500 14.5px/1.3 var(--fonte-texto);
+  letter-spacing: .045em;
+  text-transform: uppercase;
+}
+.faixa__seta {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  color: var(--papel);
+  transition: background-color .25s ease, color .25s ease;
+}
+.faixa__seta--ant { grid-column: 1; grid-row: 1; }
+.faixa__seta--prox { grid-column: 3; grid-row: 1; }
+.faixa__seta .i { width: 22px; height: 22px; }
+.faixa__seta:hover { background: rgb(255 255 255 / .06); color: var(--ouro-texto); }
+
+.faixa__controle {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 6px;
+}
+.faixa__pontos { display: flex; align-items: center; }
+/* área de toque de 24 px, bolinha de 7 px */
+.faixa__ponto {
+  position: relative;
+  width: 24px;
+  height: 24px;
+}
+.faixa__ponto::before {
+  content: '';
+  position: absolute;
+  inset: 50% auto auto 50%;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgb(172 173 175 / .5);
+  translate: -50% -50%;
+  transition: background-color .3s ease, scale .3s var(--ease-out);
+}
+.faixa__ponto[aria-current="true"]::before { background: var(--ouro-texto); scale: 1.15; }
+.faixa__pausa {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  color: var(--prata);
+  transition: color .25s ease;
+}
+.faixa__pausa[hidden] { display: none; }
+.faixa__pausa .i { width: 12px; height: 12px; }
+.faixa__pausa:hover { color: var(--papel); }
+.faixa__tocar-i { display: none; }
+.faixa__pausa[aria-pressed="true"] .faixa__pausa-i { display: none; }
+.faixa__pausa[aria-pressed="true"] .faixa__tocar-i { display: block; }
+
+/* no celular a quebra do texto é a da largura; a do mockup (br) vale no desktop */
+.faixa__texto br { display: none; }
+@media (max-width: 767.98px) {
+  .faixa__texto { max-width: 21ch; font-size: 14px; letter-spacing: .035em; text-wrap: balance; }
+}
+
+/* ================================================================ 768+ */
+@media (min-width: 768px) {
+  .hero {
+    grid-template-columns: 100%;
+    grid-template-rows: minmax(clamp(500px, calc(100svh - var(--altura-header) - 132px), 620px), auto) auto;
+  }
+  .hero__foto {
+    grid-area: 1 / 1;
+    aspect-ratio: auto;
+  }
+  .hero__foto img { object-position: 62% 50%; }
+  .hero__foto::after {
+    background:
+      linear-gradient(90deg,
+        rgb(13 17 22 / .96) 0%,
+        rgb(13 17 22 / .88) 24%,
+        rgb(13 17 22 / .56) 38%,
+        rgb(13 17 22 / .12) 52%,
+        rgb(13 17 22 / 0) 60%),
+      linear-gradient(0deg, rgb(13 17 22 / .55) 0, rgb(13 17 22 / 0) 110px);
+  }
+
+  .hero__conteudo {
+    grid-area: 1 / 1;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-block: clamp(36px, 5vh, 56px);
+  }
+  .hero__cab { padding-top: 0; }
+  .hero__rotulo { font-size: 13px; }
+  .hero__titulo {
+    margin-top: clamp(14px, 1.3vw, 18px);
+    font-size: clamp(2.9rem, 1.4rem + 2.4vw, 3.75rem);
+    line-height: 1.01;
+  }
+  .hero__sub {
+    max-width: 31em;
+    margin-top: clamp(18px, 1.6vw, 24px);
+    font-size: clamp(16.5px, 15.5px + .25vw, 18.5px);
+    line-height: 1.55;
+  }
+  .hero__acoes { flex-direction: row; flex-wrap: wrap; gap: 16px; margin-top: clamp(26px, 2.4vw, 34px); }
+  .hero__btn { width: auto; min-height: 60px; padding-inline: 30px; font-size: 17px; }
+  .hero__nota { margin-top: 16px; padding-bottom: 0; font-size: 13.5px; text-align: left; }
+
+  /* faixa: 4 pilares em linha, fio vertical entre eles, sem setas nem bolinhas */
+  .faixa { grid-area: 2 / 1; }
+  .faixa__moldura { display: block; padding-block: 0; }
+  .faixa__trilho { overflow: visible; scroll-snap-type: none; }
+  .faixa__seta,
+  .faixa__controle { display: none; }
+  .faixa__item {
+    flex: 1 1 0;
+    justify-content: center;
+    gap: 18px;
+    min-height: 0;
+    padding: clamp(26px, 2.4vw, 34px) clamp(10px, 1.4vw, 22px);
+    border-left: 1px solid var(--linha-escura);
+  }
+  .faixa__item:first-child { justify-content: flex-start; padding-left: 0; border-left: 0; }
+  .faixa__item:last-child { justify-content: flex-end; padding-right: 0; }
+  .faixa__icone { width: clamp(40px, 3.4vw, 50px); height: clamp(40px, 3.4vw, 50px); }
+  .faixa__texto { font-size: clamp(13px, 11px + .3vw, 15.5px); }
+
+  .faixa__moldura { --i: 5; }
+}
+@media (min-width: 1100px) {
+  .faixa__texto br { display: inline; }
+}
+
+/* tablet: o texto passa por cima da foto; véu mais forte e pilar com ícone em cima */
+@media (min-width: 768px) and (max-width: 1099.98px) {
+  .hero__foto img { object-position: 72% 50%; }
+  .hero__foto::after {
+    background:
+      linear-gradient(90deg, rgb(13 17 22 / .95) 0%, rgb(13 17 22 / .84) 44%, rgb(13 17 22 / .35) 76%, rgb(13 17 22 / .15) 100%),
+      linear-gradient(0deg, rgb(13 17 22 / .6) 0, rgb(13 17 22 / 0) 110px);
+  }
+  .faixa__item,
+  .faixa__item:first-child,
+  .faixa__item:last-child {
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 10px;
+    padding: 22px 10px;
+    text-align: center;
+  }
+}
+
+/* ---------------------------------------------------------------- entrada */
+@keyframes hero-assenta { from { transform: scale(1.05); } }
+@keyframes hero-sobe { from { opacity: 0; transform: translateY(20px); } }
+@keyframes hero-titulo { from { opacity: .2; transform: translateY(16px); } }
+
+@media (prefers-reduced-motion: no-preference) {
+  /* a foto assenta devagar só no desktop: no celular ela é o LCP e o zoom atrasa a pintura final */
+  @media (min-width: 768px) {
+    .hero__foto img { animation: hero-assenta 1.4s var(--ease-out) backwards; }
+  }
+  .hero__rotulo { animation: hero-sobe .75s var(--ease-out) .04s backwards; }
+  .hero__titulo { animation: hero-titulo .85s var(--ease-out) .1s backwards; }
+  .hero__sub { animation: hero-titulo .8s var(--ease-out) .2s backwards; }
+  .hero__acoes { animation: hero-sobe .8s var(--ease-out) .32s backwards; }
+  .hero__nota { animation: hero-sobe .8s var(--ease-out) .42s backwards; }
+}

@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Política de privacidade | On Top Business</title>
+  <meta name="description" content="Como a On Top Business trata os dados de quem visita o site e fala com ela pelo WhatsApp.">
+  <meta name="robots" content="noindex, follow">
+  <meta name="theme-color" content="#111418">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <!-- @css -->
+</head>
+<body class="politica">
+  <!-- Página simples, gerada pelo build a partir deste molde (mesmas fontes e base
+       do site). Texto de LGPD genérico: a On Top precisa revisar, e ele precisa
+       mudar se o site passar a usar Google Analytics ou o Pixel da Meta. -->
+  <header class="politica__topo escuro">
+    <div class="container politica__barra">
+      <a class="politica__marca" href="/"><img data-img="logo-horizontal" data-img-max="600" sizes="220px" alt="On Top Business, voltar ao início" decoding="async"></a>
+      <a class="politica__voltar" href="/"><i data-i="arrow-left" data-w="regular"></i>Voltar ao site</a>
+    </div>
+  </header>
+
+  <main class="politica__corpo container">
+    <span class="rotulo">Transparência</span>
+    <h1 class="titulo">Política de privacidade</h1>
+    <p class="politica__data">Atualizada em setembro de {{ano}}.</p>
+
+    <p>Esta página explica como a On Top Business trata os dados de quem visita este site e fala com ela pelo WhatsApp, conforme a Lei Geral de Proteção de Dados (Lei 13.709/2018).</p>
+
+    <h2>Quem é o responsável</h2>
+    <p>On Top Business<!-- @se cfg.razaoSocial -->, {{cfg.razaoSocial}}<!-- /@se --><!-- @se cfg.cnpj -->, CNPJ {{cfg.cnpj}}<!-- /@se -->. O contato está no fim desta página.</p>
+
+    <h2>Que dados o site coleta</h2>
+    <p>O site não tem formulário. Quando você toca num botão de WhatsApp, a conversa acontece no próprio WhatsApp, e a On Top recebe o seu nome de perfil, o seu número e o que você escrever.</p>
+    <p>A hospedagem do site registra dados técnicos de acesso, como endereço IP, navegador e página visitada, por segurança e para o site funcionar.</p>
+
+    <h2>Para que os dados são usados</h2>
+    <p>Para responder o seu contato, apresentar a proposta que você pedir e cumprir obrigações legais. Nada é usado para outra finalidade sem o seu consentimento.</p>
+
+    <h2>Com quem são compartilhados</h2>
+    <p>A On Top não vende dados. Eles passam só por quem presta serviço para a conversa acontecer (o WhatsApp e a hospedagem do site) e por quem a lei obrigar.</p>
+
+    <h2>Por quanto tempo ficam guardados</h2>
+    <p>Pelo tempo do atendimento e pelo prazo que a lei exigir. Depois disso, são apagados.</p>
+
+    <h2>Os seus direitos</h2>
+    <p>Você pode pedir a qualquer momento para confirmar se a On Top tem dados seus, ver quais são, corrigir, apagar, saber com quem foram compartilhados e retirar o consentimento (art. 18 da LGPD).</p>
+
+    <h2>Como falar com a On Top</h2>
+    <p>Pelo WhatsApp <a href="{{wa:conversa}}" target="_blank" rel="noopener">{{cfg.whatsappExibir}}</a><!-- @se cfg.email --> ou pelo e-mail <a href="mailto:{{cfg.email}}">{{cfg.email}}</a><!-- /@se -->.</p>
+  </main>
+
+  <footer class="politica__rodape escuro">
+    <div class="container">
+      <p>© {{ano}} On Top Business · Todos os direitos reservados</p>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,36 @@
+/* ================================================================ 06 · Diferenciais
+   Mockup: fundo quase branco, cards claros de borda fina com o ícone dourado
+   escuro à esquerda e título e frase ao lado. Seis cards em três colunas no
+   desktop, duas no tablet e um embaixo do outro no celular.                   */
+
+.dif__cab { margin-bottom: clamp(28px, 3vw, 40px); }
+
+.dif__grade {
+  display: grid;
+  gap: 14px;
+}
+.dif-card {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: start;
+  gap: 18px;
+  padding: 22px 22px 24px;
+  border-color: #E6E2DA;
+  background: rgb(255 255 255 / .8);
+}
+.dif-card__icone { width: 44px; height: 44px; }
+.dif-card__titulo {
+  color: var(--tinta);
+  font: 600 18px/1.25 var(--fonte-texto);
+  text-wrap: balance;
+}
+.dif-card__texto { margin-top: 6px; color: var(--pedra); font-size: 15px; line-height: 1.55; }
+
+@media (min-width: 640px) {
+  .dif__grade { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+}
+@media (min-width: 1024px) {
+  .dif__grade { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+  .dif-card { padding: clamp(24px, 2.2vw, 30px) clamp(22px, 2vw, 28px); }
+  .dif-card__icone { width: 48px; height: 48px; }
+}

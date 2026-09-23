@@ -1,0 +1,18 @@
+/* Política de privacidade: página simples, com a base e as fontes do site. */
+.politica { background: var(--papel); color: var(--pedra); }
+.politica__topo { background: var(--tinta); border-bottom: 1px solid rgb(94 99 107 / .32); }
+.politica__barra { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 76px; }
+.politica__marca img { width: 220px; height: auto; }
+.politica__voltar { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; color: var(--papel); font-weight: 500; }
+.politica__voltar .i { width: 18px; height: 18px; color: var(--ouro); }
+.politica__voltar:hover { color: var(--ouro-texto); }
+.politica__corpo { max-width: 760px; padding-block: clamp(48px, 6vw, 80px); font-size: 17px; line-height: 1.7; }
+.politica__corpo > p { margin-top: 14px; }
+.politica__corpo h2 { margin-top: 36px; color: var(--tinta); font: 700 22px/1.2 var(--fonte-titulo); letter-spacing: .03em; text-transform: uppercase; }
+.politica__corpo a { color: var(--ouro-escuro); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+.politica__data { color: var(--pedra); font-size: 15px; }
+.politica__rodape { padding-block: 24px; background: var(--tinta-funda); color: var(--prata); font-size: 13px; }
+@media (max-width: 479.98px) {
+  .politica__marca img { width: 170px; }
+  .politica__voltar { font-size: 15px; }
+}

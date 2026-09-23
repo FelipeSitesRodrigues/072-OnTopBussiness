@@ -1,0 +1,53 @@
+<!-- 03 · A garantia na prática (bloco 5 da copy, no desenho do mockup). Escuro: texto e
+     botão dourado à esquerda; à direita o card com a foto do imóvel e o painel lateral,
+     que aqui lista o que o investidor recebe em mãos. A foto é ilustrativa e diz isso.
+     A frase "Se alguém te oferecer investimento sem mostrar nada disso, desconfie."
+     só entra quando a On Top confirmar os quatro itens (copy, bloco 14). -->
+<section class="secao secao--escura garantia" id="garantia" aria-labelledby="garantia-titulo">
+  <div class="container garantia__grade">
+    <header class="garantia__cab" data-revela>
+      <span class="rotulo">A garantia na prática</span>
+      <h2 class="titulo" id="garantia-titulo">O que você recebe <span class="destaque">em mãos.</span></h2>
+      <p class="texto-apoio garantia__apoio">Garantia boa é a que você consegue conferir. Antes de investir, você recebe:</p>
+    </header>
+
+    <div class="garantia__card" data-revela style="--i:1">
+      <figure class="garantia__foto">
+        <img data-img="imovel" sizes="(min-width: 1100px) 560px, (min-width: 768px) 60vw, 100vw" alt="Casa moderna de alto padrão ao anoitecer, com piscina e jardim iluminados" loading="lazy" decoding="async">
+        <figcaption class="garantia__legenda">Imagem ilustrativa</figcaption>
+      </figure>
+      <ol class="garantia__lista" role="list">
+        <li class="garantia__item">
+          <span class="garantia__num" aria-hidden="true">01</span>
+          <div>
+            <h3 class="garantia__titulo">O contrato</h3>
+            <p class="garantia__texto">Por escrito, com prazo, regras de resgate e o imóvel que garante a operação.</p>
+          </div>
+        </li>
+        <li class="garantia__item">
+          <span class="garantia__num" aria-hidden="true">02</span>
+          <div>
+            <h3 class="garantia__titulo">A matrícula do imóvel</h3>
+            <p class="garantia__texto">O documento do cartório, com a garantia registrada. Você pede a certidão e confere.</p>
+          </div>
+        </li>
+        <li class="garantia__item">
+          <span class="garantia__num" aria-hidden="true">03</span>
+          <div>
+            <h3 class="garantia__titulo">A avaliação do imóvel</h3>
+            <p class="garantia__texto">O laudo com o valor do imóvel, pra comparar com o valor investido.</p>
+          </div>
+        </li>
+        <li class="garantia__item">
+          <span class="garantia__num" aria-hidden="true">04</span>
+          <div>
+            <h3 class="garantia__titulo">O relatório da operação</h3>
+            <p class="garantia__texto">Enviado todo mês, pra você acompanhar sem precisar perguntar.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+
+    <a class="btn btn--ouro garantia__btn" href="{{wa:contrato}}" target="_blank" rel="noopener" data-zap="garantia-contrato" data-evento="tema" data-revela style="--i:2"><i data-i="whatsapp-logo" data-w="regular"></i>Pedir um contrato de exemplo</a>
+  </div>
+</section>

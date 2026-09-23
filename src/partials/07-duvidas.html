@@ -1,0 +1,98 @@
+<!-- 07 · Antes de investir (blocos 8 e 10 da copy). Não existe no mockup: segue as
+     seções claras dele. Título à esquerda (fica parado enquanto a lista rola) e um
+     acordeão só à direita, com as objeções primeiro e as dúvidas depois. É
+     <details name="duvidas">: abre um de cada vez, sem JavaScript.
+     As dúvidas que dependem de resposta da On Top ficam escondidas até o
+     site.config.json ter a resposta (respostas.cvm, minimo, prazo, acompanhamento,
+     corretora e cidades): o build avisa o que falta. -->
+<section class="secao secao--papel duvidas" id="duvidas" aria-labelledby="duvidas-titulo">
+  <div class="container duvidas__grade">
+    <header class="duvidas__cab" data-revela>
+      <span class="rotulo">Antes de investir</span>
+      <h2 class="titulo" id="duvidas-titulo">O que todo investidor pergunta.</h2>
+    </header>
+
+    <div class="faq" data-revela style="--i:1">
+      <details class="faq__item" name="duvidas" open>
+        <summary class="faq__pergunta">Isso não é pirâmide?<span class="faq__sinal" aria-hidden="true"></span></summary>
+        <div class="faq__resposta">
+          <p>É a pergunta certa, e vale fazer antes de investir em qualquer lugar.</p>
+          <p>Pirâmide paga quem entrou antes com o dinheiro de quem entra depois, e nunca mostra onde o dinheiro está.</p>
+          <p>Aqui você recebe o contrato e vê o imóvel que garante a operação antes de investir.<!-- @se cfg.registroCvm --> E pode conferir o registro da On Top na CVM.<!-- /@se --></p>
+        </div>
+      </details>
+      <details class="faq__item" name="duvidas">
+        <summary class="faq__pergunta">E se a bolsa cair?<span class="faq__sinal" aria-hidden="true"></span></summary>
+        <div class="faq__resposta">
+          <p>A bolsa oscila, e ninguém sério promete o contrário.</p>
+          <p>Por isso a estratégia tem gestão de risco e cada operação tem um imóvel como garantia, previsto no contrato.</p>
+        </div>
+      </details>
+      <details class="faq__item" name="duvidas">
+        <summary class="faq__pergunta">Posso tirar o dinheiro quando quiser?<span class="faq__sinal" aria-hidden="true"></span></summary>
+        <div class="faq__resposta">
+          <p>O prazo e as regras de resgate ficam escritos no contrato, e você conhece os dois antes de assinar.</p>
+        </div>
+      </details>
+      <details class="faq__item" name="duvidas">
+        <summary class="faq__pergunta">Nunca ouvi falar da On Top.<span class="faq__sinal" aria-hidden="true"></span></summary>
+        <div class="faq__resposta">
+          <p>Faz sentido desconfiar de quem você não conhece. Por isso a primeira conversa serve pra você conhecer a empresa, quem está por trás e cada documento, sem compromisso de fechar.</p>
+        </div>
+      </details>
+      <details class="faq__item" name="duvidas">
+        <summary class="faq__pergunta">Como funciona a garantia imobiliária?<span class="faq__sinal" aria-hidden="true"></span></summary>
+        <div class="faq__resposta">
+          <p>Cada operação tem um imóvel como garantia, descrito no contrato.</p>
+        </div>
+      </details>
+      <!-- @se cfg.respostas.cvm -->
+      <details class="faq__item" name="duvidas">
+        <summary class="faq__pergunta">A On Top é autorizada pela CVM?<span class="faq__sinal" aria-hidden="true"></span></summary>
+        <div class="faq__resposta"><p>{{cfg.respostas.cvm}}</p></div>
+      </details>
+      <!-- /@se -->
+      <!-- @se cfg.respostas.minimo -->
+      <details class="faq__item" name="duvidas">
+        <summary class="faq__pergunta">Qual o valor mínimo pra investir?<span class="faq__sinal" aria-hidden="true"></span></summary>
+        <div class="faq__resposta"><p>{{cfg.respostas.minimo}}</p></div>
+      </details>
+      <!-- /@se -->
+      <!-- @se cfg.respostas.prazo -->
+      <details class="faq__item" name="duvidas">
+        <summary class="faq__pergunta">Qual o prazo, e como funciona o resgate?<span class="faq__sinal" aria-hidden="true"></span></summary>
+        <div class="faq__resposta"><p>{{cfg.respostas.prazo}} Tudo fica escrito no contrato, antes da assinatura.</p></div>
+      </details>
+      <!-- /@se -->
+      <!-- @se cfg.respostas.acompanhamento -->
+      <details class="faq__item" name="duvidas">
+        <summary class="faq__pergunta">Como eu acompanho o meu investimento?<span class="faq__sinal" aria-hidden="true"></span></summary>
+        <div class="faq__resposta"><p>{{cfg.respostas.acompanhamento}}</p></div>
+      </details>
+      <!-- /@se -->
+      <details class="faq__item" name="duvidas">
+        <summary class="faq__pergunta">Posso levar o contrato pro meu advogado?<span class="faq__sinal" aria-hidden="true"></span></summary>
+        <div class="faq__resposta">
+          <p>Pode e deve. Você só assina depois de entender cada cláusula.</p>
+        </div>
+      </details>
+      <!-- @se cfg.respostas.corretora -->
+      <details class="faq__item" name="duvidas">
+        <summary class="faq__pergunta">Preciso ter conta em corretora?<span class="faq__sinal" aria-hidden="true"></span></summary>
+        <div class="faq__resposta"><p>{{cfg.respostas.corretora}}</p></div>
+      </details>
+      <!-- /@se -->
+      <!-- @se cfg.respostas.cidades -->
+      <details class="faq__item" name="duvidas">
+        <summary class="faq__pergunta">Vocês atendem em outras cidades?<span class="faq__sinal" aria-hidden="true"></span></summary>
+        <div class="faq__resposta"><p>{{cfg.respostas.cidades}}</p></div>
+      </details>
+      <!-- /@se -->
+    </div>
+
+    <div class="cta-secao duvidas__cta" data-revela>
+      <p class="cta-secao__texto">Ficou uma pergunta que não está aqui? Pergunte agora, antes de qualquer decisão.</p>
+      <a class="btn btn--ouro" href="{{wa:duvida}}" target="_blank" rel="noopener" data-zap="duvidas" data-evento="tema"><i data-i="whatsapp-logo" data-w="regular"></i>Tirar a dúvida no WhatsApp</a>
+    </div>
+  </div>
+</section>

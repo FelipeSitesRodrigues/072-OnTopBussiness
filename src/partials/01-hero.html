@@ -1,0 +1,71 @@
+<!-- @head -->
+<link rel="preload" as="image" type="image/avif" fetchpriority="high" media="(max-width: 767.98px)" imagesrcset="/assets/img/hero-celular-480.avif 480w, /assets/img/hero-celular-720.avif 720w, /assets/img/hero-celular-800.avif 800w, /assets/img/hero-celular-941.avif 941w" imagesizes="100vw">
+<link rel="preload" as="image" type="image/avif" fetchpriority="high" media="(min-width: 768px)" imagesrcset="/assets/img/hero-desktop-960.avif 960w, /assets/img/hero-desktop-1280.avif 1280w, /assets/img/hero-desktop-1672.avif 1672w" imagesizes="100vw">
+<!-- /@head -->
+<!-- 01 · Hero + faixa de pilares (blocos 1 e 2 da copy, no desenho do mockup).
+     Desktop: a foto do escritório ocupa o hero todo e o texto fica à esquerda, sobre
+     o véu escuro. Celular (ordem da casa): título sobre o alto escuro da foto
+     vertical, a foto aparece logo abaixo, depois subtítulo e botões.
+     A faixa de pilares vira carrossel no celular (01-hero.js). -->
+<section class="secao secao--escura hero" id="inicio" aria-labelledby="hero-titulo">
+  <picture class="hero__foto">
+    <source type="image/avif" media="(max-width: 767.98px)" width="941" height="1672" sizes="100vw" srcset="/assets/img/hero-celular-480.avif 480w, /assets/img/hero-celular-720.avif 720w, /assets/img/hero-celular-800.avif 800w, /assets/img/hero-celular-941.avif 941w">
+    <source type="image/webp" media="(max-width: 767.98px)" width="941" height="1672" sizes="100vw" srcset="/assets/img/hero-celular-480.webp 480w, /assets/img/hero-celular-720.webp 720w, /assets/img/hero-celular-800.webp 800w, /assets/img/hero-celular-941.webp 941w">
+    <source type="image/avif" sizes="100vw" srcset="/assets/img/hero-desktop-960.avif 960w, /assets/img/hero-desktop-1280.avif 1280w, /assets/img/hero-desktop-1672.avif 1672w">
+    <img src="/assets/img/hero-desktop-1280.webp" srcset="/assets/img/hero-desktop-960.webp 960w, /assets/img/hero-desktop-1280.webp 1280w, /assets/img/hero-desktop-1672.webp 1672w" sizes="100vw" width="1672" height="941" alt="Escritório com mesa de mármore e vista para a cidade ao pôr do sol" fetchpriority="high" decoding="async">
+  </picture>
+
+  <div class="container hero__conteudo">
+    <div class="hero__cab">
+      <p class="rotulo hero__rotulo">Empresa de investimentos<!-- @se cfg.cidade --> · {{cfg.cidade}}<!-- /@se --></p>
+      <h1 class="hero__titulo" id="hero-titulo">
+        <span class="hero__verso">Invista na bolsa</span>
+        <span class="hero__verso">com <em class="destaque">garantia</em></span>
+        <span class="hero__verso"><em class="destaque">em imóvel.</em></span>
+      </h1>
+    </div>
+
+    <p class="hero__sub">Cada operação na bolsa tem um imóvel como garantia, descrito em contrato. Pra quem quer ir além da renda fixa sem depender só do sobe e desce do mercado.</p>
+
+    <div class="hero__acoes">
+      <a class="btn btn--ouro hero__btn" href="{{wa:conversa}}" target="_blank" rel="noopener" data-zap="hero"><i data-i="whatsapp-logo" data-w="regular"></i>Marcar uma conversa</a>
+      <a class="btn btn--contorno-claro hero__btn" href="#garantia">Ver como a garantia funciona<i data-i="arrow-right" data-w="regular" class="seta"></i></a>
+    </div>
+
+    <p class="hero__nota">Sem pressa pra decidir · Tudo por escrito, em contrato</p>
+  </div>
+
+  <div class="faixa" data-carrossel>
+    <div class="container faixa__moldura" data-revela>
+      <button class="faixa__seta faixa__seta--ant" type="button" aria-label="Pilar anterior" data-ant><i data-i="caret-left" data-w="regular"></i></button>
+      <ul class="faixa__trilho" role="list" data-trilho>
+        <li class="faixa__item">
+          <i data-i="house-line" class="faixa__icone"></i>
+          <span class="faixa__texto">Imóvel em garantia <br>em cada operação</span>
+        </li>
+        <li class="faixa__item">
+          <i data-i="chart-bar" class="faixa__icone"></i>
+          <span class="faixa__texto">Estratégia na <br>bolsa de valores</span>
+        </li>
+        <li class="faixa__item">
+          <i data-i="file-text" class="faixa__icone"></i>
+          <span class="faixa__texto">Tudo por escrito, <br>em contrato</span>
+        </li>
+        <li class="faixa__item">
+          <i data-i="users-three" class="faixa__icone"></i>
+          <span class="faixa__texto">Atendimento direto <br>com quem decide</span>
+        </li>
+      </ul>
+      <button class="faixa__seta faixa__seta--prox" type="button" aria-label="Próximo pilar" data-prox><i data-i="caret-right" data-w="regular"></i></button>
+      <div class="faixa__controle">
+        <div class="faixa__pontos" data-pontos>
+          <button type="button" class="faixa__ponto" aria-label="Pilar 1 de 4" aria-current="true"></button>
+          <button type="button" class="faixa__ponto" aria-label="Pilar 2 de 4"></button>
+          <button type="button" class="faixa__ponto" aria-label="Pilar 3 de 4"></button>
+          <button type="button" class="faixa__ponto" aria-label="Pilar 4 de 4"></button>
+        </div>
+        <button class="faixa__pausa" type="button" aria-label="Pausar a troca automática" data-pausa hidden><i data-i="pause" data-w="bold" class="faixa__pausa-i"></i><i data-i="play" data-w="bold" class="faixa__tocar-i"></i></button>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,265 @@
+/* ================================================================ 00 · Header (cab)
+   Como no mockup: faixa escura sólida com um fio embaixo, logo horizontal à
+   esquerda, menu no centro e o botão dourado à direita. Fica fixo; depois de
+   64 px de rolagem (sentinela observado no 00-header.js) encolhe um pouco e
+   ganha blur. Menu completo a partir de 1100 px; abaixo disso, hambúrguer.    */
+
+.cab-sentinela {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 64px;
+  pointer-events: none;
+}
+
+.cab {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  height: var(--altura-header);
+  padding-right: var(--cab-barra, 0px);
+  color: var(--papel);
+  background-color: rgb(14 18 23 / .97);
+  border-bottom: 1px solid rgb(94 99 107 / .32);
+  transition:
+    background-color .5s var(--ease-out),
+    box-shadow .5s var(--ease-out),
+    height .45s var(--ease-out),
+    -webkit-backdrop-filter .5s var(--ease-out),
+    backdrop-filter .5s var(--ease-out);
+}
+.cab--rolado {
+  --altura-rolado: calc(var(--altura-header) - 12px);
+  height: var(--altura-rolado);
+  background-color: rgb(14 18 23 / .88);
+  -webkit-backdrop-filter: blur(16px) saturate(1.2);
+  backdrop-filter: blur(16px) saturate(1.2);
+  box-shadow: 0 10px 28px -20px rgb(0 0 0 / .8);
+}
+.cab--menu { background-color: rgb(14 18 23 / .99); box-shadow: none; }
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .cab--rolado { background-color: rgb(14 18 23 / .98); }
+}
+
+.cab__barra {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+/* ---------------------------------------------------------------- logo */
+.cab__marca {
+  display: inline-flex;
+  align-items: center;
+  flex: none;
+  border-radius: 4px;
+}
+.cab__marca img {
+  width: 272px;
+  height: auto;
+  transform-origin: 0 50%;
+  transition: transform .5s var(--ease-out);
+}
+.cab--rolado .cab__marca img { transform: scale(.88); }
+
+/* ---------------------------------------------------------------- menu (desktop) */
+.cab__lista {
+  display: flex;
+  align-items: center;
+  gap: clamp(22px, 2.4vw, 38px);
+}
+.cab__link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: rgb(244 240 232 / .88);
+  font: 500 15px/1 var(--fonte-texto);
+  white-space: nowrap;
+  transition: color .25s ease;
+}
+/* traço dourado embaixo: abre no hover e fica na seção ativa */
+.cab__link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 6px;
+  height: 1.5px;
+  border-radius: 2px;
+  background: var(--ouro);
+  opacity: 0;
+  transform: scaleX(0);
+  transition: transform .45s var(--ease-out), opacity .3s ease;
+}
+.cab__link:hover { color: var(--branco); }
+.cab__link:hover::after { opacity: .6; transform: scaleX(.45); }
+.cab__link[aria-current] { color: var(--ouro-texto); }
+.cab__link[aria-current]::after { opacity: 1; transform: scaleX(1); }
+
+/* ---------------------------------------------------------------- ações */
+.cab__acoes {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.cab__cta { min-height: 52px; padding: 0 24px; font-size: 16px; }
+.cab__cta .i { width: 21px; height: 21px; }
+
+/* ---------------------------------------------------------------- hambúrguer (claro, como no mockup) */
+.cab__abrir {
+  display: none;
+  position: relative;
+  flex: none;
+  width: 48px;
+  height: 48px;
+  margin-right: -10px;
+  border-radius: 8px;
+  color: var(--papel);
+}
+.cab__traco {
+  position: absolute;
+  right: 11px;
+  width: 26px;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+  transition: transform .45s var(--ease-out), opacity .25s ease;
+}
+.cab__traco:nth-child(1) { top: 16px; }
+.cab__traco:nth-child(2) { top: 23px; }
+.cab__traco:nth-child(3) { top: 30px; }
+.cab__abrir[aria-expanded="true"] { color: var(--ouro-texto); }
+.cab__abrir[aria-expanded="true"] .cab__traco:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.cab__abrir[aria-expanded="true"] .cab__traco:nth-child(2) { opacity: 0; transform: translateX(8px); }
+.cab__abrir[aria-expanded="true"] .cab__traco:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ---------------------------------------------------------------- desktop */
+@media (min-width: 1100px) {
+  .cab__barra {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: 24px;
+  }
+  .cab__nav { justify-self: center; }
+}
+@media (min-width: 1100px) and (max-width: 1279.98px) {
+  .cab__marca img { width: 232px; }
+  .cab__lista { gap: 20px; }
+  .cab__cta { padding: 0 18px; }
+}
+
+/* ---------------------------------------------------------------- tablet e celular */
+@media (max-width: 1099.98px) {
+  .cab__nav,
+  .cab__cta { display: none; }
+  .cab__marca img { width: 196px; }
+  .cab--rolado .cab__marca img { transform: none; }
+  .cab--rolado { height: var(--altura-header); }
+  .cab__abrir { display: block; }
+}
+@media (max-width: 359.98px) {
+  .cab__marca img { width: 168px; }
+}
+
+/* ---------------------------------------------------------------- painel do celular
+   Fica abaixo da barra do header (que continua visível, com o X no lugar do
+   hambúrguer). Links grandes no título condensado, botão e nota no pé.       */
+html.cab-trava,
+html.cab-trava body { overflow: hidden; }
+html.cab-trava body { padding-right: var(--cab-barra, 0px); }
+
+.cab-menu {
+  position: fixed;
+  top: var(--altura-header);
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 110;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  color: var(--papel);
+  background:
+    radial-gradient(90% 40% at 50% 0%, rgb(211 161 52 / .08), transparent 72%),
+    linear-gradient(180deg, rgb(14 18 23 / .97), rgb(11 14 18 / .99));
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .22s ease, visibility 0s linear .22s;
+}
+.cab-menu--aberto {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity .32s var(--ease-out), visibility 0s;
+}
+@media (min-width: 1100px) {
+  .cab-menu { display: none; }
+}
+
+.cab-menu__nav { padding-top: clamp(12px, 3vh, 28px); }
+
+/* entrada escalonada: cada item sobe um pouco, uma vez por abertura */
+.cab-menu__item {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity .18s ease, transform .2s ease;
+}
+.cab-menu--aberto .cab-menu__item {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity .5s var(--ease-out) calc(70ms + var(--i, 0) * 42ms),
+    transform .6s var(--ease-out) calc(70ms + var(--i, 0) * 42ms);
+}
+
+.cab-menu__link {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-height: 62px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--linha-escura);
+  color: var(--papel);
+  font: 700 clamp(24px, 6.8vw, 32px)/1.1 var(--fonte-titulo);
+  text-transform: uppercase;
+  letter-spacing: .01em;
+  transition: color .25s ease;
+}
+.cab-menu__num {
+  flex: none;
+  min-width: 24px;
+  color: var(--ouro);
+  font: 600 12.5px/1 var(--fonte-texto);
+  letter-spacing: .12em;
+}
+.cab-menu__link .i {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  margin-left: auto;
+  color: rgb(244 240 232 / .34);
+  transition: transform .35s var(--ease-out), color .25s ease;
+}
+.cab-menu__link:hover .i,
+.cab-menu__link:focus-visible .i { color: var(--ouro-texto); transform: translateX(4px); }
+.cab-menu__link[aria-current],
+.cab-menu__link[aria-current] .i { color: var(--ouro-texto); }
+
+.cab-menu__pe {
+  display: grid;
+  justify-items: center;
+  gap: 14px;
+  margin-top: auto;
+  padding-top: 32px;
+  padding-bottom: max(24px, env(safe-area-inset-bottom));
+}
+.cab-menu__cta { width: 100%; min-height: 56px; }
+.cab-menu__nota { color: var(--prata); font-size: 14px; text-align: center; text-wrap: balance; }
